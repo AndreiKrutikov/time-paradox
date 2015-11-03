@@ -9,6 +9,7 @@ namespace Engine {
 
 struct Interactible : Component<Interactible> {
   virtual void onKeyEvent(sf::Event::KeyEvent ev, bool pressed) { };
+  virtual void onMouseWheel(sf::Event::MouseWheelScrollEvent ev) { };
 };
 
 }

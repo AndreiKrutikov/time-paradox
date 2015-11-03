@@ -1,4 +1,5 @@
 #include "EventDispatcher.h"
+#include <iostream>
 
 Engine::EventDispatcher::EventDispatcher(sf::Window & window) : System(EntityComponentSystem::ComponentFilter().requires<Interactible>()), window(window) {
 }
@@ -13,6 +14,13 @@ void Engine::EventDispatcher::update() {
       for (auto e : entities) {
         auto& interactible = e.getComponent<Interactible>();
         interactible.onKeyEvent(event.key, event.type == sf::Event::KeyPressed);
+      }
+    }
+
+    if (event.type == sf::Event::MouseWheelScrolled) {
+      for (auto e : entities) {
+        auto& interactible = e.getComponent<Interactible>();
+        interactible.onMouseWheel(event.mouseWheelScroll);
       }
     }
   }
