@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="EntitySystem">
+      <UniqueIdentifier>{1aeef0ee-4669-4851-96ef-825bf62530e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EntitySystem\Header Files">
+      <UniqueIdentifier>{a45b7bc4-3208-4ab4-8e2e-7cf389e35177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EntitySystem\Source Files">
+      <UniqueIdentifier>{f9d181ec-422c-4b2e-afe0-1f93e210480b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{aea3f26f-48ba-49ab-bc63-2317182b1d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{637bd48c-788d-4be0-ab88-5740d30440cc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InGameCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\ComponentFilter.cpp">
+      <Filter>EntitySystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\Entity.cpp">
+      <Filter>EntitySystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\detail\EntityComponentStorage.cpp">
+      <Filter>EntitySystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\detail\EntityIdPool.cpp">
+      <Filter>EntitySystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\System.cpp">
+      <Filter>EntitySystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\World.cpp">
+      <Filter>EntitySystem\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\EventDispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InGameCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\detail\ClassTypeId.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\Component.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\ComponentFilter.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\Entity.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\detail\EntityComponentStorage.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\detail\EntityIdPool.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\System.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\TypeLists.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\World.hpp">
+      <Filter>EntitySystem\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\GamePosition.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Drawable.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Interactible.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Graphics.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\EventDispatcher.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
