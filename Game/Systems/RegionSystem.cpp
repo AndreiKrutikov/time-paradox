@@ -22,7 +22,7 @@ void Engine::RegionSystem::update() {
     auto& e = entities[i];
     if (e.hasComponent<Movable>()) {
       for (auto r : entities) {
-        if (e.hasComponent<Region> && isInRegion(e, r))
+        if (e.hasComponent<Region>() && isInRegion(e, r))
           newMap.push_back(std::make_pair(e.getId(), r.getId()));
       }
     }
