@@ -116,5 +116,14 @@
     <ClInclude Include="Systems\EventDispatcher.h">
       <Filter>Systems</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Movable.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Region.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Trigerable.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
