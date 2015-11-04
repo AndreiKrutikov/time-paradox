@@ -151,13 +151,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Entities\Door.cpp" />
     <ClCompile Include="CloneObject.cpp" />
+    <ClCompile Include="Entities\Switch.cpp" />
     <ClCompile Include="EntityComponentSystem\ComponentFilter.cpp" />
     <ClCompile Include="EntityComponentSystem\detail\EntityComponentStorage.cpp" />
     <ClCompile Include="EntityComponentSystem\detail\EntityIdPool.cpp" />
     <ClCompile Include="EntityComponentSystem\Entity.cpp" />
     <ClCompile Include="EntityComponentSystem\System.cpp" />
     <ClCompile Include="EntityComponentSystem\World.cpp" />
+    <ClCompile Include="EntityComponentSystem\WorldMap.cpp" />
     <ClCompile Include="InGameCamera.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Systems\EventDispatcher.cpp" />
@@ -174,6 +177,9 @@
     <ClInclude Include="Components\Movable.h" />
     <ClInclude Include="Components\Region.h" />
     <ClInclude Include="Components\Trigerable.h" />
+    <ClInclude Include="Components\Triggerable.h" />
+    <ClInclude Include="Entities\Door.h" />
+    <ClInclude Include="Entities\Switch.h" />
     <ClInclude Include="EntityComponentSystem\Component.hpp" />
     <ClInclude Include="EntityComponentSystem\ComponentFilter.hpp" />
     <ClInclude Include="EntityComponentSystem\detail\ClassTypeId.hpp" />
@@ -183,6 +189,7 @@
     <ClInclude Include="EntityComponentSystem\System.hpp" />
     <ClInclude Include="EntityComponentSystem\TypeLists.hpp" />
     <ClInclude Include="EntityComponentSystem\World.hpp" />
+    <ClInclude Include="EntityComponentSystem\WorldMap.h" />
     <ClInclude Include="InGameCamera.h" />
     <ClInclude Include="Systems\EventDispatcher.h" />
     <ClInclude Include="Systems\Graphics.h" />
