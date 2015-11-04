@@ -14,6 +14,8 @@ void Engine::Graphics::initialize() {
   camera.view.setCenter({ window.getSize().x / 2.f, window.getSize().y / 2.f });
   camera.view.setSize({ window.getSize().x * 1.f, window.getSize().y* 1.f });
   window.setView(camera.view);
+  camera.view.zoom(0.5f);
+  camera.view.setCenter({ window.getSize().x / 4.f, window.getSize().y / 4.f });
   camera.e = getWorld().createEntity();
   camera.e.addComponent<Interactible>(&camera);
   camera.e.activate();
