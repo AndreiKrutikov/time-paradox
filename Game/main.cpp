@@ -61,7 +61,7 @@ int main() {
   sf::Texture t;
   sf::RenderWindow window(sf::VideoMode(960, 512), "SFML works!");
   sf::Image im;
-  bool s = im.loadFromFile("test.png");
+  bool s = im.loadFromFile("maps\\denis\\robot.png");
   s = t.loadFromImage(im);
   std::cout << s;
   World w;
@@ -69,7 +69,7 @@ int main() {
   levelManager.loadLevel("maps\\denis\\1.json", w);
   Player p(w.createEntity());
   p.e.addComponent<GamePosition>(Common::Point{ 1, 1 });
-  p.e.addComponent<Drawable>(t, sf::IntRect(0,0,64,64));
+  p.e.addComponent<Drawable>(t, sf::IntRect(0,0,32,32));
   p.e.activate();
 
   Graphics graphicsSystem(window);

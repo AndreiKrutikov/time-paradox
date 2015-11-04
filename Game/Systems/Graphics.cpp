@@ -2,7 +2,7 @@
 #include <EntityComponentSystem/World.hpp>
 #include "EventDispatcher.h"
 
-const float Engine::Graphics::TILESIZE = 64;
+const float Engine::Graphics::TILESIZE = 32;
 
 Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<GamePosition, Drawable>()), window(window) {
 }
