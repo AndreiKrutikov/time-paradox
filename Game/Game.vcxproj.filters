@@ -69,9 +69,6 @@
     <ClCompile Include="CloneObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EntityComponentSystem\WorldMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Entities\Door.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,12 +90,6 @@
     <ClCompile Include="Components\Interactible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MovingPlatform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Systems\MotorialSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManagers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -106,6 +97,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\JsonValue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,9 +170,6 @@
     <ClInclude Include="TimeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EntityComponentSystem\WorldMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Entities\Door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -194,17 +188,8 @@
     <ClInclude Include="Acts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Motorial.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\MotorialSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\RegionSystem.h">
       <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingPlatform.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManagers.h">
       <Filter>Header Files</Filter>
@@ -220,6 +205,12 @@
     </ClInclude>
     <ClInclude Include="Components\Triggerable.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\JsonValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

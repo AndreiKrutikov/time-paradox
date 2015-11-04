@@ -12,12 +12,7 @@ public:
   virtual void onKeyEvent(sf::Event::KeyEvent ev, bool pressed) override;
   EntityComponentSystem::Entity createClone();
 
-  void setTimeManager(Game::TimeManager* timeManager_) {
-    timeManager = timeManager_;
-  }
-
   EntityComponentSystem::Entity e;
-  Game::TimeManager* timeManager;
 };
 
 }

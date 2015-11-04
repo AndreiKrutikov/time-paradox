@@ -3,6 +3,7 @@
 #include "Components\Drawable.h"
 #include "Acts.h"
 #include "TimeManager.h"
+#include "Game.h"
 #include <EntityComponentSystem\World.hpp>
 
 using namespace EntityComponentSystem;
@@ -37,7 +38,7 @@ void Game::Player::onKeyEvent(sf::Event::KeyEvent ev, bool pressed) {
     ptr->entity = e;
     ptr->direction = d;
     std::unique_ptr<Act> act(ptr);
-    timeManager->addAndExecuteAct(std::move(act));
+    Game::getGameInstance()->timeManager->addAndExecuteAct(std::move(act));
   }
 }
 

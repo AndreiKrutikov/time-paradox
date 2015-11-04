@@ -3,6 +3,7 @@
 #include "EventDispatcher.h"
 #include "../Components/Movable.h"
 #include "../TimeManager.h"
+#include "../Game.h"
 
 const float Engine::Graphics::TILESIZE = 32;
 
@@ -47,6 +48,8 @@ void Engine::Graphics::update() {
 
   rt.display();
 
+  auto tmngr = Game::Game::getGameInstance()->timeManager;
+
   if (tmngr->isOutatime()) {
     auto color = sf::Color::Black;
     if (tmngr->getTimeMultiplier() > 0) {
@@ -57,7 +60,7 @@ void Engine::Graphics::update() {
       color = sf::Color(0x00FF0000);
     }
 
-    float intensity = std::abs(tmngr->getTimeMultiplier()) * 0.25f;
+    float intensity = std::abs(tmngr->getTimeMultiplier()) * 0.35f;
 
     ppShader.setParameter("glowColor", color);
     ppShader.setParameter("intensity", intensity);

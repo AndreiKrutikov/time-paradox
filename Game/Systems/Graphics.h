@@ -22,14 +22,10 @@ public:
   virtual void onEntityAdded(EntityComponentSystem::Entity& entity) override;
   void addText(const sf::Text& t);
 
-  void setTimeManager(Game::TimeManager* tmngr_) {
-    tmngr = tmngr_;
-  }
-
 private:
   struct Camera : public IInteractible {
     virtual void onMouseWheel(sf::Event::MouseWheelScrollEvent ev) override {
-      view.zoom(exp(ev.delta*0.1));
+      view.zoom(exp(ev.delta*0.1f));
     };
 
     sf::View view;
@@ -40,7 +36,6 @@ private:
   sf::Sprite ppSprite; 
   sf::Shader ppShader;
   sf::RenderWindow& window;
-  Game::TimeManager* tmngr;
   std::vector<std::reference_wrapper<const sf::Text>> texts;
 };
 

@@ -17,8 +17,8 @@ struct LevelManager {
   ~LevelManager();
 
   EntityComponentSystem::AccessabilityMap accessMap;
-private:
   Engine::ResourceManagers resourceManagers;
+private:
   Engine::Common::Point start, finish;
   
   void loadTileSet(Engine::Common::JsonValue& tilesetArray, const std::string& path);

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="13" height="13" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="7">
+ <tileset firstgid="1" name="scifitiles-sheet" tilewidth="32" tileheight="32" tilecount="84">
+  <image source="scifitiles-sheet.png" width="448" height="192"/>
+ </tileset>
+ <tileset firstgid="85" name="Tileset_32x32" tilewidth="32" tileheight="32" tilecount="40">
+  <image source="Tileset_32x32.png" width="256" height="160"/>
+ </tileset>
+ <tileset firstgid="125" name="black" tilewidth="32" tileheight="32" tilecount="1">
+  <image source="black.png" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="get_through" value="0"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Слой тайлов 1" width="13" height="13">
+  <data>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="1"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="59"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="96"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="86"/>
+   <tile gid="89"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="73"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="87"/>
+   <tile gid="21"/>
+   <tile gid="87"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="95"/>
+   <tile gid="86"/>
+   <tile gid="96"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+   <tile gid="125"/>
+  </data>
+ </layer>
+ <objectgroup name="Слой объектов 1">
+  <object id="1" name="door_2" x="256" y="63" width="31" height="32">
+   <properties>
+    <property name="button_id" value="button_1"/>
+    <property name="is_locked" value="1"/>
+    <property name="paired_tile" value="21"/>
+   </properties>
+  </object>
+  <object id="2" name="door_1" x="254" y="193" width="32" height="30">
+   <properties>
+    <property name="button_id" value="button_1"/>
+    <property name="is_locked" value="0"/>
+    <property name="paider_tile" value="59"/>
+   </properties>
+  </object>
+  <object id="3" name="button_1" x="255" y="287" width="32" height="31">
+   <properties>
+    <property name="doors" value="door_1, door_2"/>
+    <property name="is_on" value="0"/>
+   </properties>
+  </object>
+  <object id="4" name="exit" x="255" y="0" width="32" height="32"/>
+  <object id="6" name="enter" x="0" y="129" width="31" height="28"/>
+ </objectgroup>
+</map>

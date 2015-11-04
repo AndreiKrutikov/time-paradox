@@ -3,6 +3,7 @@
 #include "Components\Interactible.h"
 #include <SFML\Graphics\Text.hpp>
 #include "Act.h"
+#include "EntityComponentSystem\AccessabilityMap.h"
 #include <chrono>
 #include <memory>
 #include <list>
@@ -13,7 +14,7 @@ struct Player;
 
 class TimeManager : public Engine::IInteractible {
 public:
-  TimeManager(EntityComponentSystem::Entity e, Player& player);  
+  TimeManager(EntityComponentSystem::Entity e);  
   void checkPoint();
   virtual void onKeyEvent(sf::Event::KeyEvent ev, bool pressed) override;
   std::chrono::time_point<std::chrono::high_resolution_clock> getGameTime();
@@ -34,7 +35,6 @@ private:
   sf::Text text;
   std::list<std::unique_ptr<Act>> timeline;
   std::list<std::unique_ptr<Act>>::iterator firstUnexecutedAct;
-  Player& player;
   //std::list<std::unique_ptr<Act>>::reverse_iterator lastExecutedAct;
 };
 

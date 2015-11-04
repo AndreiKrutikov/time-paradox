@@ -163,6 +163,7 @@
     <ClCompile Include="EntityComponentSystem\System.cpp" />
     <ClCompile Include="EntityComponentSystem\World.cpp" />
     <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="InGameCamera.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="EntityComponentSystem\TypeLists.hpp" />
     <ClInclude Include="EntityComponentSystem\World.hpp" />
     <ClInclude Include="EntityComponentSystem\AccessabilityMap.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="InGameCamera.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="ResourceManagers.h" />
@@ -205,7 +207,7 @@
     <ClInclude Include="Systems\EventDispatcher.h" />
     <ClInclude Include="Systems\Graphics.h" />
     <ClInclude Include="Systems\RegionSystem.h" />
-    <ClInclude Include="TimeManager.h"/>
+    <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Utils\JsonValue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

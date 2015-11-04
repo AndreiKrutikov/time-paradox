@@ -1,6 +1,8 @@
 #include "Acts.h"
 #include "Components\Movable.h"
 #include <EntityComponentSystem\Entity.hpp>
+#include "EntityComponentSystem\AccessabilityMap.h"
+#include "Game.h"
 
 using namespace EntityComponentSystem;
 
@@ -10,7 +12,8 @@ bool Game::MoveAct::execute() {
   using namespace Engine::Common;
   auto& movable = entity.getComponent<Engine::Movable>();
   Point newPosition = movable.position;
- 
+  auto map = Game::getGameInstance()->accessabilityMap;
+
   switch (direction) {
   case Direction::Up :
     newPosition.y--;
@@ -26,7 +29,7 @@ bool Game::MoveAct::execute() {
     break;
   }
 
-  if (/*map.isFree(newPosition)*/ true) {
+  if (map->isFree(newPosition)) {
     movable.position = newPosition;
     return true;
   } else
@@ -57,9 +60,12 @@ void Game::MoveAct::unexecute() {
 
 bool Game::SpawnAct::execute() {
   std::cout << "Game::SpawnAct::execute() " << entity.getId() << std::endl;
+  auto map = Game::getGameInstance()->accessabilityMap;
 
-  if (/*map.isFree(position) == false || map.isDeadly(position) == true*/ false)
+  if (!map->isFree(position)) {
     return false;
+  }
+
   entity.activate();
   return true;
 }

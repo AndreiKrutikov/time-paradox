@@ -86,9 +86,6 @@ void LevelManager::loadTileSet(JsonValue& tilesetArray, const std::string& path)
         }
       }
     }
-    
-
-
   }
 }
 
