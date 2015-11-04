@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Systems\Graphics.h"
 #include <EntityComponentSystem\World.hpp>
+#include "LevelManager.h"
 #include "Components\Interactible.h"
 #include "Systems\EventDispatcher.h"
 #include "TimeManager.h"
@@ -27,13 +28,16 @@ int main() {
   sf::Texture t;
   sf::RenderWindow window(sf::VideoMode(960, 512), "Wait, OH SHI~~~");
   sf::Image im;
-  bool s = im.loadFromFile("test.png");
+  bool s = im.loadFromFile("maps\\denis\\robot.png");
   s = t.loadFromImage(im);
   std::cout << s;
   World w;
-  //p.e.addComponent<GamePosition>(Common::Point{ 1, 1 });
-  //p.e.addComponent<Drawable>(t);
-  //p.e.activate();
+  Game::LevelManager levelManager;
+  levelManager.loadLevel("maps\\denis\\", "4.json", w);
+  Player p(w.createEntity(),levelManager.accessMap);
+  p.e.addComponent<GamePosition>(Common::Point{ 1, 4 });
+  p.e.addComponent<Drawable>(t, sf::IntRect(0,0,32,32));
+  p.e.activate();
 
   Graphics graphicsSystem(window);
   EventDispatcher ed(window);

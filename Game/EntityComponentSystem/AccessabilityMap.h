@@ -1,10 +1,10 @@
 #pragma once
 #include "common.h"
 namespace EntityComponentSystem {
-struct WorldMap {
-  WorldMap();
-  ~WorldMap();
-  WorldMap(const WorldMap& that) = delete;
+struct AccessabilityMap {
+  AccessabilityMap();
+  ~AccessabilityMap();
+  AccessabilityMap(const AccessabilityMap& that) = delete;
 
   void createMap(uint16_t height, uint16_t width);
   void clear();

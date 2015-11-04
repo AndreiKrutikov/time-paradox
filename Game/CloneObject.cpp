@@ -6,7 +6,7 @@ void Game::Clone::killClone() {
 }
 
 Game::Clone::Clone(EntityComponentSystem::Entity e, Engine::Common::Point position, sf::Texture t) {
-  e.addComponent<Engine::Drawable>(t);
+//  e.addComponent<Engine::Drawable>(t);
   e.addComponent<Engine::Movable>(position);
 }
 

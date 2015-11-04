@@ -4,7 +4,7 @@
 #include "../Components/Movable.h"
 #include "../TimeManager.h"
 
-const float Engine::Graphics::TILESIZE = 64;
+const float Engine::Graphics::TILESIZE = 32;
 
 Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<Drawable>().requiresOneOf<GamePosition,Movable>()), window(window) {
 }

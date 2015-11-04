@@ -93,6 +93,21 @@
     <ClCompile Include="Components\Interactible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MovingPlatform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\MotorialSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManagers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -167,7 +182,7 @@
     <ClInclude Include="Entities\Switch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\RegionSystem.h">
+    <ClInclude Include="Components\Triggerable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Systems\RegionSystem.h">
@@ -177,6 +192,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Acts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Motorial.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\MotorialSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\RegionSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingPlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManagers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\AccessabilityMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">

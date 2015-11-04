@@ -33,7 +33,7 @@ void Engine::RegionSystem::update() {
     if (foundInd == -1) {
       auto& mov = getWorld().getEntity(p.first);
       auto& reg = getWorld().getEntity(p.second).getComponent<Region>();
-      reg.onObjectEntered(mov);
+      reg.callback->onObjectEntered(mov);
     } else {
       movableToRegion[foundInd] = std::make_pair(-1ULL, -1ULL);
     }
@@ -43,7 +43,7 @@ void Engine::RegionSystem::update() {
     if (p !=  std::make_pair(-1ULL, -1ULL)) {
       auto& mov = getWorld().getEntity(p.first);
       auto& reg = getWorld().getEntity(p.second).getComponent<Region>();
-      reg.onObjectLeave(mov);
+      reg.callback->onObjectLeave(mov);
     }
   }
 
