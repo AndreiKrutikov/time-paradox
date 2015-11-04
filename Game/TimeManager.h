@@ -39,7 +39,7 @@ public:
         }
       }
 
-      if (ev.code == sf::Keyboard::Add) {
+      if (ev.code == sf::Keyboard::Add || ev.code == sf::Keyboard::Equal) {
         if (outatime) {
           gameTimeOrigin = getGameTime();
           checkPoint();

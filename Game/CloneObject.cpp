@@ -1,26 +1,33 @@
 #include "CloneObject.h"
 
-void Engine::Clone::killClone() {
+using namespace Engine;
+void Game::Clone::killClone() {
   e.deactivate();
 }
 
-void Engine::Clone::spawnClone() {
+Game::Clone::Clone(EntityComponentSystem::Entity e, Engine::Common::Point position, sf::Texture t) {
+  e.addComponent<Engine::Drawable>(t);
+  e.addComponent<Engine::Movable>(position);
+}
+
+void Game::Clone::spawnClone() {
   e.activate();
 }
 
-void Engine::Clone::moveClone(Direction dir) {
+void Game::Clone::moveClone(Common::Direction dir) {
+  using namespace Common;
   auto& movComp = e.getComponent<Movable>();
   switch (dir) {
-  case Up:
+  case Direction::Up:
     movComp.position.y--;
     break;
-  case Down:
+  case Direction::Down:
     movComp.position.y++;
     break;
-  case Left:
+  case Direction::Left:
     movComp.position.x--;
     break;
-  case Right:
+  case Direction::Right:
     movComp.position.x++;
     break;
   }

@@ -4,22 +4,15 @@
 #include "Components\Movable.h"
 #include "Components\GamePosition.h"
 #include <SFML\Graphics\Texture.hpp>
-namespace Engine {
+namespace Game {
 
 struct Clone {
   
-  Clone(EntityComponentSystem::Entity e, Common::Point position, sf::Texture t) {
-    e.addComponent<Drawable>(t);
-    e.addComponent<Movable>(position);
-  }
-
-  enum Direction {
-    Up, Down, Left, Right
-  };
+  Clone(EntityComponentSystem::Entity e, Engine::Common::Point position, sf::Texture t);
 
   void spawnClone();
   void killClone();
-  void moveClone(Direction dir);
+  void moveClone(Engine::Common::Direction dir);
 private:
   EntityComponentSystem::Entity e;
 };

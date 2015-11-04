@@ -5,7 +5,7 @@
 
 using EntityComponentSystem::Component;
 
-namespace Engine {
+namespace Game {
 
 struct Triggerable : Component<Triggerable> {
   virtual void onTrigger(bool pressed) {
