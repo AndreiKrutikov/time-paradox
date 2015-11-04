@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Acts.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entities\Door.cpp" />
     <ClCompile Include="CloneObject.cpp" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Act.h" />
+    <ClInclude Include="Acts.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CloneObject.h" />
     <ClInclude Include="Common.h" />

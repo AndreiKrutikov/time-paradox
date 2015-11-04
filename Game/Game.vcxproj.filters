@@ -81,6 +81,9 @@
     <ClCompile Include="Systems\RegionSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Acts.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -168,6 +171,9 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="CloneObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Acts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
