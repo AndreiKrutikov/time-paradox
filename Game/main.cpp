@@ -51,16 +51,10 @@ int main() {
   bool f = font.loadFromFile("unispace rg.ttf");
   
   sf::Text text;
-
-  text.setFont(font); // font is a sf::Font
-
+  text.setFont(font); 
   text.setString("12:34.567");
-
-  text.setCharacterSize(18); // in pixels, not points!
-
+  text.setCharacterSize(18); 
   text.setColor(sf::Color::Red);
-
-  
 
 
   sf::Texture t;
@@ -92,7 +86,6 @@ int main() {
     
 
 
-    //graphicsSystem.update();
     auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(tm.getGameTime().time_since_epoch()).count();
     std::cout << ms << std::endl;
     auto minute = ms/60000;
@@ -102,10 +95,8 @@ int main() {
     std::stringstream ss;
     ss << minute << ":" << std::setw(2) << std::setfill('0')<< sec << "." << ms << " x" << tm.getTimeMultiplier();
     text.setString(ss.str());
-
-    window.clear();
-    window.draw(text);
-    window.display();
+    graphicsSystem.addText(text);
+    graphicsSystem.update();
     ed.update();
 
 

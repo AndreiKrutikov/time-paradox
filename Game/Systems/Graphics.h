@@ -16,6 +16,7 @@ public:
   static const float TILESIZE;
 
   virtual void onEntityAdded(EntityComponentSystem::Entity& entity) override;
+  void addText(const sf::Text& t);
 
 private:
   struct Camera : public Interactible {
@@ -31,6 +32,7 @@ private:
   } camera;
 
   sf::RenderWindow& window;
+  std::vector<std::reference_wrapper<const sf::Text>> texts;
 };
 
 }

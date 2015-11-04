@@ -27,9 +27,19 @@ void Engine::Graphics::update() {
     window.draw(drawable.sprite);
   }
 
+  for (auto& t : texts) {
+    window.draw(t);
+  }
+
+  texts.clear();
+
   window.display();
 }
 
 void Engine::Graphics::onEntityAdded(EntityComponentSystem::Entity & entity) {
   auto& drawable = entity.getComponent<Drawable>();
+}
+
+void Engine::Graphics::addText(const sf::Text & t) {
+  texts.push_back(t);
 }

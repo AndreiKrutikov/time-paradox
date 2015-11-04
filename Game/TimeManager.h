@@ -63,6 +63,7 @@ private:
   int64_t timeSpeed;
   bool outatime;
   EntityComponentSystem::Entity e;
+  sf::Text text;
 };
 
 }
