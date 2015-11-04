@@ -7,7 +7,7 @@ namespace Engine {
 
 	class RegionSystem : public EntityComponentSystem::System<RegionSystem> {
 	public:
-    RegionSystem() { }
+    RegionSystem();
     void update();
 
 	private:

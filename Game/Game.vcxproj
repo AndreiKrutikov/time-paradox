@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CloneObject.cpp" />
     <ClCompile Include="EntityComponentSystem\ComponentFilter.cpp" />
     <ClCompile Include="EntityComponentSystem\detail\EntityComponentStorage.cpp" />
     <ClCompile Include="EntityComponentSystem\detail\EntityIdPool.cpp" />
@@ -161,9 +162,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Systems\EventDispatcher.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
+    <ClCompile Include="Systems\RegionSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CloneObject.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Components\Drawable.h" />
     <ClInclude Include="Components\GamePosition.h" />
@@ -183,6 +186,7 @@
     <ClInclude Include="InGameCamera.h" />
     <ClInclude Include="Systems\EventDispatcher.h" />
     <ClInclude Include="Systems\Graphics.h" />
+    <ClInclude Include="Systems\RegionSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

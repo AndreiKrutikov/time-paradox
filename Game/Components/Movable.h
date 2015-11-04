@@ -9,9 +9,7 @@ using EntityComponentSystem::Component;
 namespace Engine {
 
 struct Movable : Component<Movable> {
-  Movable(const Common::Point & p) {
-    position = p;
-  }
+  Movable(Common::Point p) : position(p) { }
 
   Common::Point position;
 };
