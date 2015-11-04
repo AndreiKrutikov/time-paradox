@@ -109,7 +109,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\SDK\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freetype.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -146,7 +146,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\SDK\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -161,14 +161,15 @@
     <ClCompile Include="EntityComponentSystem\Entity.cpp" />
     <ClCompile Include="EntityComponentSystem\System.cpp" />
     <ClCompile Include="EntityComponentSystem\World.cpp" />
-    <ClCompile Include="EntityComponentSystem\WorldMap.cpp" />
+    <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp" />
     <ClCompile Include="InGameCamera.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MovingPlatform.cpp" />
+    <ClCompile Include="ResourceManagers.cpp" />
     <ClCompile Include="Systems\EventDispatcher.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
-    <ClCompile Include="Systems\MotorialSystem.cpp" />
     <ClCompile Include="Systems\RegionSystem.cpp" />
+    <ClCompile Include="Utils\JsonValue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Act.h" />
@@ -179,7 +180,6 @@
     <ClInclude Include="Components\Drawable.h" />
     <ClInclude Include="Components\GamePosition.h" />
     <ClInclude Include="Components\Interactible.h" />
-    <ClInclude Include="Components\Motorial.h" />
     <ClInclude Include="Components\Movable.h" />
     <ClInclude Include="Components\Region.h" />
     <ClInclude Include="Components\Trigerable.h" />
@@ -195,14 +195,15 @@
     <ClInclude Include="EntityComponentSystem\System.hpp" />
     <ClInclude Include="EntityComponentSystem\TypeLists.hpp" />
     <ClInclude Include="EntityComponentSystem\World.hpp" />
-    <ClInclude Include="EntityComponentSystem\WorldMap.h" />
+    <ClInclude Include="EntityComponentSystem\AccessabilityMap.h" />
     <ClInclude Include="InGameCamera.h" />
-    <ClInclude Include="MovingPlatform.h" />
+    <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="ResourceManagers.h" />
     <ClInclude Include="Systems\EventDispatcher.h" />
     <ClInclude Include="Systems\Graphics.h" />
-    <ClInclude Include="Systems\MotorialSystem.h" />
     <ClInclude Include="Systems\RegionSystem.h" />
-    <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="TimeManager.h"/>
+    <ClInclude Include="Utils\JsonValue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

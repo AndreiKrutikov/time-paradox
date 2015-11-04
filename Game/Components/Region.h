@@ -14,7 +14,7 @@ struct IRegionCallback {
 
 struct Region : Component<Region> {
   Region(const Common::Point & leftupCorner, int16_t height, int16_t width, IRegionCallback* callback) :
-  height(height), width(width), callback(callback) {  }
+  corner(leftupCorner), height(height), width(width), callback(callback) {  }
 
   IRegionCallback* callback;
   Common::Point corner;

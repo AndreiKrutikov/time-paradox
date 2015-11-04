@@ -90,6 +90,15 @@
     <ClCompile Include="Systems\MotorialSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceManagers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -189,6 +198,15 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="MovingPlatform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManagers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityComponentSystem\AccessabilityMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
