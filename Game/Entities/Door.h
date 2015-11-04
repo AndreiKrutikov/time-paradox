@@ -1,13 +1,17 @@
 #pragma once
 #include <EntityComponentSystem\World.hpp>
-#include "Components\Trigerable.h"
+#include "EntityComponentSystem\WorldMap.h"
+#include "Components\Triggerable.h"
+#include "Components\GamePosition.h"
+
 
 namespace Entities {
-struct Door : public Engine::Trigerable{
-  Door(EntityComponentSystem::Entity e);
+struct Door : public Engine::Triggerable{
+  Door(EntityComponentSystem::Entity e, EntityComponentSystem::WorldMap& map);
   void onTrigger(bool pressed);
 
   EntityComponentSystem::Entity e;
+  EntityComponentSystem::WorldMap& map;
   bool isOpened;
 };
 
