@@ -3,7 +3,11 @@
 #include <EntityComponentSystem\World.hpp>
 #include "Components\Interactible.h"
 #include "Systems\EventDispatcher.h"
+#include "TimeManager.h"
 #include <iostream>
+#include <iomanip>
+#include <sstream>
+
 
 using namespace EntityComponentSystem;
 using namespace Engine;
@@ -43,6 +47,21 @@ struct Player : public Interactible {
 
 
 int main() {
+  sf::Font font;
+  bool f = font.loadFromFile("unispace rg.ttf");
+  
+  sf::Text text;
+
+  text.setFont(font); // font is a sf::Font
+
+  text.setString("12:34.567");
+
+  text.setCharacterSize(18); // in pixels, not points!
+
+  text.setColor(sf::Color::Red);
+
+  
+
 
   sf::Texture t;
   sf::RenderWindow window(sf::VideoMode(960, 512), "SFML works!");
@@ -60,14 +79,37 @@ int main() {
   EventDispatcher ed(window);
   w.addSystem(graphicsSystem);
   w.addSystem(ed);
-  w.refresh();
 
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
+  Game::TimeManager tm(w.createEntity());
+
+  w.refresh();
+  tm.checkPoint();
   while (window.isOpen()) {
-    graphicsSystem.update();
+    
+    
+
+
+    //graphicsSystem.update();
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(tm.getGameTime().time_since_epoch()).count();
+    std::cout << ms << std::endl;
+    auto minute = ms/60000;
+    ms %= 60000;
+    auto sec = ms / 1000;
+    ms %= 1000;
+    std::stringstream ss;
+    ss << minute << ":" << std::setw(2) << std::setfill('0')<< sec << "." << ms << " x" << tm.getTimeMultiplier();
+    text.setString(ss.str());
+
+    window.clear();
+    window.draw(text);
+    window.display();
     ed.update();
+
+
+
   }
 
   return 0;

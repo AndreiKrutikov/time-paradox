@@ -110,7 +110,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freetype.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -163,6 +163,7 @@
     <ClCompile Include="Systems\Graphics.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Act.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Components\Drawable.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="InGameCamera.h" />
     <ClInclude Include="Systems\EventDispatcher.h" />
     <ClInclude Include="Systems\Graphics.h" />
+    <ClInclude Include="TimeManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

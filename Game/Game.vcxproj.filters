@@ -125,5 +125,11 @@
     <ClInclude Include="Components\Trigerable.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Act.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
