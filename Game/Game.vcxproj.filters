@@ -143,9 +143,6 @@
     <ClInclude Include="Components\Region.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Trigerable.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Act.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -164,9 +161,6 @@
     <ClInclude Include="Systems\RegionSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Triggerable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\RegionSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
@@ -175,6 +169,12 @@
     </ClInclude>
     <ClInclude Include="Acts.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Triggerable.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Act.h"
-#include <EntityComponentSystem\Entity.hpp>
 #include "Common.h"
 #include "Components\Triggerable.h"
+
 namespace Game {
 
 struct MoveAct : Act {
@@ -29,4 +29,5 @@ struct TriggerAct : Act {
   virtual bool execute() override;
   virtual void unexecute() override;
 };
+
 }

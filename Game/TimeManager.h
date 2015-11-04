@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Components\Interactible.h"
+#include "Act.h"
 #include <chrono>
+#include <memory>
 
 namespace Game {
 
@@ -10,6 +12,7 @@ public:
   TimeManager(EntityComponentSystem::Entity e) : timeSpeed(1), e(e), outatime(false) {
     e.addComponent<Engine::Interactible>(static_cast<Interactible*>(this));
     e.activate();
+    firstUnexecutedAct = timeline.begin();
   }
   
   void checkPoint() {
@@ -18,6 +21,7 @@ public:
 
   virtual void onKeyEvent(sf::Event::KeyEvent ev, bool pressed) override {
     if (pressed) {
+      bool wasOuttatime = outatime;
       if (ev.code == sf::Keyboard::Space) {
         if (timeSpeed != 0) {
           outatime = true;
@@ -57,6 +61,40 @@ public:
     return timeSpeed;
   }
 
+  void addAndExecuteAct(std::unique_ptr<Act> act) {
+    if (!outatime) {
+      if (act->execute()) {
+        act->timestamp = getGameTime();
+        firstUnexecutedAct = timeline.insert(firstUnexecutedAct, std::move(act));
+        firstUnexecutedAct++;
+      }
+    }
+  }
+
+  bool update() {
+    auto currentTime = getGameTime();
+    if (timeSpeed > 0) {
+      while (firstUnexecutedAct != timeline.end() && firstUnexecutedAct->get()->timestamp <= currentTime) {
+        bool success = firstUnexecutedAct->get()->execute();
+        if (!success) return false; //TimeParadox
+        firstUnexecutedAct++; 
+      }
+    }
+
+    if (timeSpeed < 0) {
+      for (;;) {
+        if (firstUnexecutedAct == timeline.begin()) break;
+        firstUnexecutedAct--;
+        if (firstUnexecutedAct->get()->timestamp >= currentTime) {
+          firstUnexecutedAct->get()->unexecute();
+        } else {
+          firstUnexecutedAct++;
+          break;
+        }
+      }
+    }
+  }
+
 private:
   std::chrono::time_point<std::chrono::high_resolution_clock> gameTimeOrigin;
   std::chrono::time_point<std::chrono::high_resolution_clock> realtimeOrigin;
@@ -64,6 +102,9 @@ private:
   bool outatime;
   EntityComponentSystem::Entity e;
   sf::Text text;
+  std::list<std::unique_ptr<Act>> timeline;
+  std::list<std::unique_ptr<Act>>::iterator firstUnexecutedAct;
+  //std::list<std::unique_ptr<Act>>::reverse_iterator lastExecutedAct;
 };
 
 }

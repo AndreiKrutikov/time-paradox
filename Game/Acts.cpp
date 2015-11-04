@@ -1,9 +1,13 @@
 #include "Acts.h"
 #include "Components\Movable.h"
+#include <EntityComponentSystem\Entity.hpp>
+
+using namespace EntityComponentSystem;
 
 bool Game::MoveAct::execute() {
   using namespace Engine::Common;
-  Point newPosition = entity.getComponent<Engine::Movable>().position;
+  auto& movable = entity.getComponent<Engine::Movable>();
+  Point newPosition = movable.position;
  
   switch (direction) {
   case Direction::Up :
@@ -20,8 +24,8 @@ bool Game::MoveAct::execute() {
     break;
   }
 
-  if (map.isFree(newPosition)) {
-    entity.getComponent<Engine::Movable>().position = newPosition;
+  if (/*map.isFree(newPosition)*/ true) {
+    movable.position = newPosition;
     return true;
   } else
     return false;
@@ -50,7 +54,7 @@ void Game::MoveAct::unexecute() {
 }
 
 bool Game::SpawnAct::execute() {
-  if (map.isFree(position) == false || map.isDeadly(position) == true)
+  if (/*map.isFree(position) == false || map.isDeadly(position) == true*/ true)
     return false;
   entity.activate();
   return true;
