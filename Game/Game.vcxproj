@@ -161,12 +161,15 @@
     <ClCompile Include="EntityComponentSystem\Entity.cpp" />
     <ClCompile Include="EntityComponentSystem\System.cpp" />
     <ClCompile Include="EntityComponentSystem\World.cpp" />
-    <ClCompile Include="EntityComponentSystem\WorldMap.cpp" />
+    <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp" />
     <ClCompile Include="InGameCamera.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ResourceManagers.cpp" />
     <ClCompile Include="Systems\EventDispatcher.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
     <ClCompile Include="Systems\RegionSystem.cpp" />
+    <ClCompile Include="Utils\JsonValue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Act.h" />
@@ -192,12 +195,18 @@
     <ClInclude Include="EntityComponentSystem\System.hpp" />
     <ClInclude Include="EntityComponentSystem\TypeLists.hpp" />
     <ClInclude Include="EntityComponentSystem\World.hpp" />
-    <ClInclude Include="EntityComponentSystem\WorldMap.h" />
+    <ClInclude Include="EntityComponentSystem\AccessabilityMap.h" />
     <ClInclude Include="InGameCamera.h" />
+    <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="ResourceManagers.h" />
     <ClInclude Include="Systems\EventDispatcher.h" />
     <ClInclude Include="Systems\Graphics.h" />
     <ClInclude Include="Systems\RegionSystem.h" />
+<<<<<<< HEAD
     <ClInclude Include="TimeManager.h" />
+=======
+    <ClInclude Include="Utils\JsonValue.h" />
+>>>>>>> basic graphics
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

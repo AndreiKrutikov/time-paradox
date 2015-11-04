@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Systems\Graphics.h"
 #include <EntityComponentSystem\World.hpp>
+#include "LevelManager.h"
 #include "Components\Interactible.h"
 #include "Systems\EventDispatcher.h"
 #include "TimeManager.h"
@@ -64,9 +65,11 @@ int main() {
   s = t.loadFromImage(im);
   std::cout << s;
   World w;
+  LevelManager levelManager;
+  levelManager.loadLevel("maps\\denis\\1.json", w);
   Player p(w.createEntity());
   p.e.addComponent<GamePosition>(Common::Point{ 1, 1 });
-  p.e.addComponent<Drawable>(t);
+  p.e.addComponent<Drawable>(t, sf::IntRect(0,0,64,64));
   p.e.activate();
 
   Graphics graphicsSystem(window);
