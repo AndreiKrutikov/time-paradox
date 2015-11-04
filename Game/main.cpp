@@ -14,13 +14,14 @@ using namespace EntityComponentSystem;
 using namespace Engine;
 
 struct Player : public Interactible {
-  Player(Entity e) : e(e) {
+  Player(Entity e, AccessabilityMap& map) : e(e), accessMap(map) {
     e.addComponent<Interactible>(static_cast<Interactible*>(this));
   }
 
   virtual void onKeyEvent(sf::Event::KeyEvent ev, bool pressed) override {
     if (pressed) {
       auto& pos = e.getComponent<GamePosition>();
+      auto ppoint = pos.point;
       switch (ev.code) {
       case sf::Keyboard::Right:
         pos.point.x++;
@@ -38,12 +39,15 @@ struct Player : public Interactible {
         pos.point.y++;
         break;
       }
-
+      if (accessMap.isOccupied(pos.point)) {
+        pos.point = ppoint;
+      }
       std::cout << pos.point.x;
     }
   }
 
   Entity e;
+  AccessabilityMap& accessMap;
 };
 
 
@@ -65,10 +69,10 @@ int main() {
   s = t.loadFromImage(im);
   std::cout << s;
   World w;
-  LevelManager levelManager;
-  levelManager.loadLevel("maps\\denis\\1.json", w);
-  Player p(w.createEntity());
-  p.e.addComponent<GamePosition>(Common::Point{ 1, 1 });
+  Game::LevelManager levelManager;
+  levelManager.loadLevel("maps\\denis\\", "4.json", w);
+  Player p(w.createEntity(),levelManager.accessMap);
+  p.e.addComponent<GamePosition>(Common::Point{ 1, 4 });
   p.e.addComponent<Drawable>(t, sf::IntRect(0,0,32,32));
   p.e.activate();
 

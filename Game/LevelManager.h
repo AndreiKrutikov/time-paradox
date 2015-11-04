@@ -2,22 +2,29 @@
 #include "EntityComponentSystem\AccessabilityMap.h"
 #include "ResourceManagers.h"
 #include "EntityComponentSystem\World.hpp"
+#include "Utils\JsonValue.h"
 #include <string>
-namespace EntityComponentSystem {
+#include <map>
+namespace Game {
 
-	struct LevelManager
-	{
-		LevelManager();
-    LevelManager(const std::string& filename, World& w);
+struct LevelManager {
+  LevelManager();
+  
+  void loadLevel(const std::string path,const std::string& levelfile, EntityComponentSystem::World& w);
 
-    void loadLevel(const std::string& filename, World& w);
+  void clear();
 
+  ~LevelManager();
 
-		~LevelManager();
-  private:
-    AccessabilityMap accessMap;
-    ResourceManagers resourceManagers;
-	};
+  EntityComponentSystem::AccessabilityMap accessMap;
+private:
+  Engine::ResourceManagers resourceManagers;
+  Engine::Common::Point start, finish;
+  
+  void loadTileSet(Engine::Common::JsonValue& tilesetArray, const std::string& path);
+  void loadTileLayer(Engine::Common::JsonValue& layer, uint16_t width, EntityComponentSystem::World& w);
 
 };
+
+}
 

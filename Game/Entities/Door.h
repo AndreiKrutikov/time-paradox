@@ -7,7 +7,7 @@
 
 namespace Entities {
 struct Door : public Engine::Triggerable{
-  Door(EntityComponentSystem::Entity e, EntityComponentSystem::AccessabilityMap& map);
+  Door(EntityComponentSystem::Entity e, EntityComponentSystem::AccessabilityMap& map, bool initialState);
   void onTrigger(bool pressed);
 
   EntityComponentSystem::Entity e;
