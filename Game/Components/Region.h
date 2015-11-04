@@ -7,19 +7,19 @@
 using EntityComponentSystem::Component;
 
 namespace Engine {
+struct IRegionCallback {
+  virtual void onObjectEntered(EntityComponentSystem::Entity e) {   }
+  virtual void onObjectLeave(EntityComponentSystem::Entity e) {  }
+};
 
 struct Region : Component<Region> {
-  Region(const Common::Point & leftupCorner, int16_t height_, int16_t width_) {
-    height = height_;
-    width = width_;
-    corner = leftupCorner;
-  }
+  Region(const Common::Point & leftupCorner, int16_t height, int16_t width, IRegionCallback* callback) :
+  height(height), width(width), callback(callback) {  }
 
+  IRegionCallback* callback;
   Common::Point corner;
   size_t height, width;
 
-  virtual void onObjectEntered(EntityComponentSystem::Entity e) {  }
-  virtual void onObjectLeave(EntityComponentSystem::Entity e) {  }
 };
 
 }
