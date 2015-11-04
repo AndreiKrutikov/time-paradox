@@ -6,6 +6,10 @@
 #include "../Components/Interactible.h"
 #include <iostream>
 
+namespace Game {
+  class TimeManager;
+}
+
 namespace Engine {
 
 class Graphics : public EntityComponentSystem::System<Graphics> {
@@ -18,20 +22,25 @@ public:
   virtual void onEntityAdded(EntityComponentSystem::Entity& entity) override;
   void addText(const sf::Text& t);
 
+  void setTimeManager(Game::TimeManager* tmngr_) {
+    tmngr = tmngr_;
+  }
+
 private:
-  struct Camera : public Interactible {
+  struct Camera : public IInteractible {
     virtual void onMouseWheel(sf::Event::MouseWheelScrollEvent ev) override {
-      std::cout << exp(ev.delta) << " ";
       view.zoom(exp(ev.delta*0.1));
-      window->setView(view);
     };
 
     sf::View view;
-    sf::RenderWindow* window;
     EntityComponentSystem::Entity e;
   } camera;
 
+  sf::RenderTexture rt;
+  sf::Sprite ppSprite; 
+  sf::Shader ppShader;
   sf::RenderWindow& window;
+  Game::TimeManager* tmngr;
   std::vector<std::reference_wrapper<const sf::Text>> texts;
 };
 

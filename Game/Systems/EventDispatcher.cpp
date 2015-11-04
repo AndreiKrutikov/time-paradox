@@ -10,17 +10,10 @@ void Engine::EventDispatcher::update() {
   while (window.pollEvent(event)) {
     if (event.type == sf::Event::Closed)
       window.close();
-    if (event.type == sf::Event::KeyPressed || event.type == sf::Event::KeyReleased) {
-      for (auto e : entities) {
-        auto& interactible = e.getComponent<Interactible>();
-        interactible.onKeyEvent(event.key, event.type == sf::Event::KeyPressed);
-      }
-    }
 
-    if (event.type == sf::Event::MouseWheelScrolled) {
-      for (auto e : entities) {
-        auto& interactible = e.getComponent<Interactible>();
-        interactible.onMouseWheel(event.mouseWheelScroll);
+    for (auto e : entities) {
+      if (e.hasComponent<Interactible>()) {
+        e.getComponent<Interactible>().onEvent(event);
       }
     }
   }

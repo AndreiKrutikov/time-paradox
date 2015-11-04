@@ -43,33 +43,30 @@ int main() {
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
-  Game::TimeManager tm(w.createEntity());
-  Game::Player p(w.createEntity(),tm);
+  Game::Player p(w.createEntity());
   p.e.addComponent<Drawable>(t);
-  p.e.activate();
+  Game::TimeManager tm_(w.createEntity(), p);
+  p.setTimeManager(&tm_);
+  graphicsSystem.setTimeManager(&tm_);
 
   w.refresh();
-  tm.checkPoint();
+  tm_.checkPoint();
   while (window.isOpen()) {
     
-    tm.update();
+    tm_.update();
+    w.refresh();
 
-
-    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(tm.getGameTime().time_since_epoch()).count();
-    std::cout << ms << std::endl;
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(tm_.getGameTime().time_since_epoch()).count();
     auto minute = ms/60000;
     ms %= 60000;
     auto sec = ms / 1000;
     ms %= 1000;
     std::stringstream ss;
-    ss << minute << ":" << std::setw(2) << std::setfill('0')<< sec << "." << ms << " x" << tm.getTimeMultiplier();
+    ss << minute << ":" << std::setw(2) << std::setfill('0')<< sec << "." << std::setw(3) << std::setfill('0') << ms << " x" << tm_.getTimeMultiplier();
     text.setString(ss.str());
     graphicsSystem.addText(text);
     graphicsSystem.update();
     ed.update();
-
-
-
   }
 
   return 0;

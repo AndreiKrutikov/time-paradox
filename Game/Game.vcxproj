@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="Acts.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Components\Interactible.cpp" />
     <ClCompile Include="Entities\Door.cpp" />
     <ClCompile Include="CloneObject.cpp" />
     <ClCompile Include="Entities\Switch.cpp" />
@@ -164,9 +165,11 @@
     <ClCompile Include="EntityComponentSystem\WorldMap.cpp" />
     <ClCompile Include="InGameCamera.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Systems\EventDispatcher.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
     <ClCompile Include="Systems\RegionSystem.cpp" />
+    <ClCompile Include="TimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Act.h" />

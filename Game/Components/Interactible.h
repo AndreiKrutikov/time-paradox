@@ -7,9 +7,17 @@ using EntityComponentSystem::Component;
 
 namespace Engine {
 
-struct Interactible : Component<Interactible> {
+class IInteractible{
+public:
   virtual void onKeyEvent(sf::Event::KeyEvent ev, bool pressed) { };
   virtual void onMouseWheel(sf::Event::MouseWheelScrollEvent ev) { };
+};
+
+struct Interactible : Component<Interactible> {
+  Interactible(IInteractible* receiver);
+  void onEvent(sf::Event ev);
+
+  IInteractible* receiver;
 };
 
 }

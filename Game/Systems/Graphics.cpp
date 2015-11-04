@@ -2,6 +2,7 @@
 #include <EntityComponentSystem/World.hpp>
 #include "EventDispatcher.h"
 #include "../Components/Movable.h"
+#include "../TimeManager.h"
 
 const float Engine::Graphics::TILESIZE = 64;
 
@@ -13,18 +14,24 @@ void Engine::Graphics::initialize() {
   camera.view.setSize({ window.getSize().x * 1.f, window.getSize().y* 1.f });
   window.setView(camera.view);
   camera.e = getWorld().createEntity();
-  camera.e.addComponent<Interactible>(static_cast<Interactible*>(&camera));
+  camera.e.addComponent<Interactible>(&camera);
   camera.e.activate();
-  camera.window = &window;
+  auto size = window.getSize();
+  rt.create(size.x, size.y);
+  ppSprite.setTexture(rt.getTexture());
+  ppShader.loadFromFile("glow.frag", sf::Shader::Fragment);
+  ppShader.setParameter("texture", sf::Shader::CurrentTexture);
 }
 
 void Engine::Graphics::update() {
-  window.clear();
+  rt.clear();
+  rt.setView(camera.view);
+
   auto& entities = getEntities();
   for (auto e : entities) {
     Common::Point point;
     if (e.hasComponent<GamePosition>()) {
-      auto& pos = e.getComponent<GamePosition>(); 
+      auto& pos = e.getComponent<GamePosition>();
       point = pos.point;
     }
 
@@ -34,8 +41,30 @@ void Engine::Graphics::update() {
     }
 
     auto& drawable = e.getComponent<Drawable>();
-    drawable.sprite.setPosition(sf::Vector2f{point.x * TILESIZE, point.y * TILESIZE });
-    window.draw(drawable.sprite);
+    drawable.sprite.setPosition(sf::Vector2f{ point.x * TILESIZE, point.y * TILESIZE });
+    rt.draw(drawable.sprite);
+  }
+
+  rt.display();
+
+  if (tmngr->isOutatime()) {
+    auto color = sf::Color::Black;
+    if (tmngr->getTimeMultiplier() > 0) {
+      color = sf::Color(0x0000FF00);
+    }
+
+    if (tmngr->getTimeMultiplier() < 0) {
+      color = sf::Color(0x00FF0000);
+    }
+
+    float intensity = std::abs(tmngr->getTimeMultiplier()) * 0.25f;
+
+    ppShader.setParameter("glowColor", color);
+    ppShader.setParameter("intensity", intensity);
+    window.draw(ppSprite, &ppShader);
+  } else {
+
+    window.draw(ppSprite);
   }
 
   for (auto& t : texts) {

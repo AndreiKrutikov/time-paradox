@@ -4,6 +4,8 @@
 
 using namespace EntityComponentSystem;
 
+#include <iostream>
+
 bool Game::MoveAct::execute() {
   using namespace Engine::Common;
   auto& movable = entity.getComponent<Engine::Movable>();
@@ -54,21 +56,26 @@ void Game::MoveAct::unexecute() {
 }
 
 bool Game::SpawnAct::execute() {
-  if (/*map.isFree(position) == false || map.isDeadly(position) == true*/ true)
+  std::cout << "Game::SpawnAct::execute() " << entity.getId() << std::endl;
+
+  if (/*map.isFree(position) == false || map.isDeadly(position) == true*/ false)
     return false;
   entity.activate();
   return true;
 }
 
 void Game::SpawnAct::unexecute() {
+  std::cout << "Game::SpawnAct::unexecute() " << entity.getId() << std::endl;
   entity.deactivate();
 }
 
 bool Game::DisappearAct::execute() {
+  std::cout << "Game::DisappearAct::execute() " << entity.getId() << std::endl;
   entity.deactivate();
   return true;
 }
 
 void Game::DisappearAct::unexecute() {
+  std::cout << "Game::DisappearAct::unexecute() " << entity.getId() << std::endl;
   entity.activate();
 }

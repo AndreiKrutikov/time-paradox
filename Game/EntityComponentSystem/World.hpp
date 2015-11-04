@@ -98,11 +98,13 @@ private:
     EntityArray killed;
     EntityArray activated;
     EntityArray deactivated;
+    EntityArray componentsChanged;
 
     void clearTemp() {
       killed.clear();
       activated.clear();
       deactivated.clear();
+      componentsChanged.clear();
     }
 
     void clear() {
