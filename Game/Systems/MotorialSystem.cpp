@@ -13,7 +13,7 @@ void Engine::MotorialSystem::update() {
     auto& motorial = e.getComponent<Motorial>();
     if (motorial.isActive == true) {
       if (std::chrono::duration_cast<std::chrono::milliseconds>(Game::Game::getGameInstance()->timeManager->getGameTime() - motorial.lastShiftTime).count() < motorial.velocity) continue;
-      motorial.callback->onPositionChanged(motorial.direction);
+//      motorial.callback->onPositionChanged(motorial.direction);
 
       auto& position = e.getComponent<Movable>().position;
       motorial.lastShiftTime = Game::Game::getGameInstance()->timeManager->getGameTime();

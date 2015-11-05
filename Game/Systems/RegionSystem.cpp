@@ -3,58 +3,40 @@
 #include <vector>
 #include <EntityComponentSystem/World.hpp>
 
-Engine::RegionSystem::RegionSystem() : System(EntityComponentSystem::ComponentFilter().requiresOneOf <Movable, Region>()) {
-}
-
-int32_t Engine::RegionSystem::findInMap(std::pair <uint64_t, uint64_t> p) {
-  //we can try to optimise something here if needed
-  std::vector <uint64_t> res;
-  for (size_t t = 0; t < movableToRegion.size(); ++t)
-    if (movableToRegion[t] == p)
-      return t;
-  return -1;
+Engine::RegionSystem::RegionSystem() : System(EntityComponentSystem::ComponentFilter().requiresOneOf<Movable, Region>()) {
 }
 
 void Engine::RegionSystem::update() {
-  auto& entities = getEntities();
-  std::vector < std::pair <uint64_t, uint64_t> > newMap;
-  for (size_t i = 0; i < entities.size(); ++i) {
-    auto& e = entities[i];
-    if (e.hasComponent<Movable>()) {
-      for (auto& r : entities) {
-        if (r.hasComponent<Region>())
-          if (isInRegion(e, r))
-            newMap.push_back(std::make_pair(e.getId(), r.getId()));
+  for (auto region : regions) {
+    auto& reg = region.getComponent<Region>();
+    for (auto movable : movables) {
+      if (reg.entitiesInRegion.count(movable) > 0 && !isInRegion(movable, region)) {
+          reg.entitiesInRegion.erase(movable);
+          reg.callback->onEntityLeave(movable);        
+      }
+
+      if (reg.entitiesInRegion.count(movable) == 0 && isInRegion(movable, region)) {
+        reg.entitiesInRegion.insert(movable);
+        reg.callback->onEntityEnter(movable);
       }
     }
   }
-  
-  for (auto p : newMap) {
-    auto foundInd = findInMap(p);
-    if (foundInd == -1) {
-      auto& mov = getWorld().getEntity(p.first);
-      auto& reg = getWorld().getEntity(p.second).getComponent<Region>();
-      reg.callback->onObjectEntered(mov);
-    } else {
-      movableToRegion[foundInd] = std::make_pair(-1ULL, -1ULL);
-    }
-  }
-
-  for (auto p : movableToRegion) {
-    if (p !=  std::make_pair(-1ULL, -1ULL)) {
-      auto& mov = getWorld().getEntity(p.first);
-      auto& reg = getWorld().getEntity(p.second).getComponent<Region>();
-      reg.callback->onObjectLeave(mov);
-    }
-  }
-
-  movableToRegion = newMap;
 }
 
-bool Engine::RegionSystem::isInRegion(EntityComponentSystem::Entity const & movableEntity, EntityComponentSystem::Entity const & regionEntity) const {
+void Engine::RegionSystem::onEntityAdded(EntityComponentSystem::Entity& entity) {
+  if (entity.hasComponent<Movable>()) movables.insert(entity);
+  if (entity.hasComponent<Region>()) regions.insert(entity);
+}
+
+void Engine::RegionSystem::onEntityRemoved(EntityComponentSystem::Entity & entity) {
+  movables.erase(entity);
+  regions.erase(entity);
+}
+
+bool Engine::RegionSystem::isInRegion(EntityComponentSystem::Entity movableEntity, EntityComponentSystem::Entity regionEntity) const {
   auto& mov = movableEntity.getComponent<Movable>();
   auto& reg = regionEntity.getComponent<Region>();
 
-  return mov.position.x >= reg.corner.x && mov.position.x <= reg.corner.x + reg.width
-    && mov.position.y >= reg.corner.y && mov.position.y <= reg.corner.y + reg.height;
+  return mov.position.x >= reg.topLeftCorner.x && mov.position.x < reg.topLeftCorner.x + reg.width
+    && mov.position.y >= reg.topLeftCorner.y && mov.position.y < reg.topLeftCorner.y + reg.height;
 }

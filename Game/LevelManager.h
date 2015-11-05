@@ -35,7 +35,7 @@ struct LevelManager {
 private:
   std::list<Entities::Door> doors;
   std::list<Entities::Switch> buttons;
-  std::list<Entities::MovingPlatform> platforms;
+//  std::list<Entities::MovingPlatform> platforms;
   std::vector<EntityComponentSystem::Entity> entities;
   
 

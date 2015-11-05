@@ -4,6 +4,7 @@
 #include <streambuf>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include "Utils\JsonValue.h"
 #include <iostream>
 #include "Common.h"
@@ -15,10 +16,13 @@
 #include "Components\Motorial.h"
 #include "Components\Region.h"
 #include "Components\Movable.h"
+#include "Components\Trigger.h"
+#include "Components\Triggerable.h"
 
 using namespace EntityComponentSystem;
 using namespace Game;
 using namespace Engine::Common;
+using namespace Engine;
 
 LevelManager::LevelManager() {
 }
@@ -53,7 +57,9 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
 
   //we need to create switched after all other objects 
   std::vector<JsonValue> switches;
-  std::map<size_t, Entity> triggerables;
+  std::map<size_t, Entity> triggers;
+  std::unordered_map<Entity, std::string> doorDeps;
+  
 
   for (auto& layer : jsonData("layers").getArray()) {
     std::string s = layer("type").getString();
@@ -68,57 +74,58 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
         } else if (s == "exit") {
           finish = pos;
         } else if (s == "button") {
-          switches.push_back(x);
-        } else if (s == "door") {
-          
+          buttons.emplace_back(entities[idx]);
+          triggers[std::stoul((x("properties"))("trigger_id").getString())] = entities[idx];
+          entities[idx].addComponent<Trigger>();
+          entities[idx].addComponent<Region>(pos, int16_t(1), int16_t(1), &buttons.back());
+        } else if (s == "door") {          
           bool isClosed = (x("properties"))("is_locked").getString() == "1";
           uint16_t altidx = static_cast<uint16_t>(std::stoi((x("properties"))("paired_tile").getString()));
           uint16_t textureId = static_cast<uint16_t>(data.getArray()[idx].getInteger());
-          //uint16_t alternativeTextureId = static_cast<uint16_t>(data.getArray()[altidx].getInteger());
-
           sf::Sprite alterSprite(resourceManagers.getTileTexture(altidx), resourceManagers.getTileRectangle(altidx));
-          
-          doors.emplace_back(entities[idx], !isClosed, alterSprite);
-          triggerables[std::stoul((x("properties"))("triggerable_id").getString())] = entities[idx];
-        } else if (s == "platform") {
-          entities.push_back(Game::getGameInstance()->world->createEntity());
-          platforms.emplace_back(entities.back());
-          entities.back().addComponent<Engine::Movable>(pos);
-          uint16_t tileId = static_cast<uint16_t>(std::stoi((x("properties"))("tile_id").getString()));
-          entities.back().addComponent<Engine::Drawable>(resourceManagers.getTileTexture(tileId), resourceManagers.getTileRectangle(tileId));
-          entities.back().addComponent<Engine::Triggerable>(&platforms.back());
-          entities.back().addComponent<Engine::Region>(pos, int16_t(0), int16_t(0), &platforms.back());
-          auto str = x("properties")("bounds").getString();
-          auto jv = JsonValue::fromString(str);
-          auto arr = (jv).getArray();
-          Engine::Common::Direction d;
-          str = x("properties")("direction").getString();
-          if (str == "left") d = Engine::Common::Direction::Left;
-          if (str == "up") d = Engine::Common::Direction::Up;
-          if (str == "down") d = Engine::Common::Direction::Down;
-          if (str == "right") d = Engine::Common::Direction::Right;
+          if (isClosed) {
+            accessMap.setOccupied(pos);
+          }
 
-          entities.back().addComponent<Engine::Motorial>(
-            250.f,
-            Engine::Common::Point{ static_cast<int16_t>(arr[0].getInteger()), static_cast<int16_t>(arr[1].getInteger()) },
-            Engine::Common::Point{ static_cast<int16_t>(arr[2].getInteger()), static_cast<int16_t>(arr[3].getInteger()) },
-            d,
-            &platforms.back());
-          triggerables[std::stoul((x("properties"))("triggerable_id").getString())] = entities.back();
-          accessMap.setFree(pos);
+          doors.emplace_back(entities[idx], alterSprite, isClosed);
+          entities[idx].addComponent<Triggerable>(&doors.back());
+          doorDeps[entities[idx]] = x("properties")("depends").getString();
+        } else if (s == "platform") {
+          //entities.push_back(Game::getGameInstance()->world->createEntity());
+          //platforms.emplace_back(entities.back());
+          //entities.back().addComponent<Engine::Movable>(pos);
+          //uint16_t tileId = static_cast<uint16_t>(std::stoi((x("properties"))("tile_id").getString()));
+          //entities.back().addComponent<Engine::Drawable>(resourceManagers.getTileTexture(tileId), resourceManagers.getTileRectangle(tileId));
+          //entities.back().addComponent<Engine::Triggerable>(&platforms.back());
+          //entities.back().addComponent<Engine::Region>(pos, int16_t(0), int16_t(0), &platforms.back());
+          //auto str = x("properties")("bounds").getString();
+          //auto jv = JsonValue::fromString(str);
+          //auto arr = (jv).getArray();
+          //Engine::Common::Direction d;
+          //str = x("properties")("direction").getString();
+          //if (str == "left") d = Engine::Common::Direction::Left;
+          //if (str == "up") d = Engine::Common::Direction::Up;
+          //if (str == "down") d = Engine::Common::Direction::Down;
+          //if (str == "right") d = Engine::Common::Direction::Right;
+
+          //entities.back().addComponent<Engine::Motorial>(
+          //  250.f,
+          //  Engine::Common::Point{ static_cast<int16_t>(arr[0].getInteger()), static_cast<int16_t>(arr[1].getInteger()) },
+          //  Engine::Common::Point{ static_cast<int16_t>(arr[2].getInteger()), static_cast<int16_t>(arr[3].getInteger()) },
+          //  d,
+          //  &platforms.back());
+          //triggerables[std::stoul((x("properties"))("triggerable_id").getString())] = entities.back();
+          //accessMap.setFree(pos);
         }
       }
     }
   }
 
-  for (auto& x : switches) {
-    uint16_t idx = std::stoi((x("properties"))("arr_pos").getString());
-    Point pos = Point{ idx % width, idx / width };
-    buttons.emplace_back(entities[idx], pos, 0, 0);
-    auto str = x("properties")("switches").getString();
-    auto jv = JsonValue::fromString(str);
-    for (auto& dependency : (jv).getArray()) {
-      buttons.back().bind(triggerables[dependency.getInteger()]);
+  for (auto& door : doors) {
+    auto& triggerable = door.e.getComponent<Triggerable>();
+    auto jv = JsonValue::fromString(doorDeps[door.e]);
+    for (auto& dependency : jv.getArray()) {
+      triggerable.dependecies.insert(triggers[dependency.getInteger()]);
     }
   }
 }
@@ -128,9 +135,9 @@ void LevelManager::initLevel() {
     d.init();
   }
 
-  for (auto& p : platforms) {
-    p.init();
-  }
+  //for (auto& p : platforms) {
+  //  p.init();
+  //}
 
   for (auto e : entities) {
     e.activate();

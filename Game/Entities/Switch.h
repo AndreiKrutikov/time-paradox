@@ -7,15 +7,14 @@
 
 namespace Game { namespace Entities {
 
-struct Switch : public Engine::IRegionCallback {
-  Switch(EntityComponentSystem::Entity e, Engine::Common::Point leftupCorner, int16_t height, int16_t width);
+struct Switch : Engine::IEnterableCallback {
+  Switch(EntityComponentSystem::Entity e);
+  Switch(Switch&&) = delete;
+  Switch(const Switch&) = delete;
 
-  void bind(EntityComponentSystem::Entity e);
-  void onObjectEntered(EntityComponentSystem::Entity e) override;
-  void onObjectLeave(EntityComponentSystem::Entity e) override;
+  virtual void onEntityEnter(EntityComponentSystem::Entity e) override;
+  virtual void onEntityLeave(EntityComponentSystem::Entity e) override;
   EntityComponentSystem::Entity e;
-private:
-  std::vector<EntityComponentSystem::Entity> triggerObjects;
 };
 
 } }

@@ -1,26 +1,23 @@
 #include "Switch.h"
+#include "../Components/PlayerControllable.h"
+#include "../Components/Trigger.h"
 #include <iostream>
 
 using namespace EntityComponentSystem;
 using namespace Engine;
 using namespace Game::Entities;
 
-Switch::Switch(EntityComponentSystem::Entity e, Common::Point leftupCorner, int16_t height, int16_t width) : e(e) {
-  e.addComponent<Region>(leftupCorner, height, width, this);
+Game::Entities::Switch::Switch(EntityComponentSystem::Entity e) : e(e){
 }
 
-void Switch::bind(EntityComponentSystem::Entity entity) {
-  triggerObjects.push_back(entity);
-}
-
-void Switch::onObjectEntered(EntityComponentSystem::Entity e) {
-  for (auto& entity : triggerObjects) {
-    entity.getComponent<Triggerable>().onTrigger(true);
+void Game::Entities::Switch::onEntityEnter(EntityComponentSystem::Entity reason) {
+  if (reason.hasComponent<PlayerControllable>()) {
+    e.getComponent<Trigger>().isSet = true;
   }
 }
 
-void Switch::onObjectLeave(EntityComponentSystem::Entity e) {
-  for (auto& entity : triggerObjects) {
-    entity.getComponent<Triggerable>().onTrigger(false);
+void Game::Entities::Switch::onEntityLeave(EntityComponentSystem::Entity reason) {
+  if (reason.hasComponent<PlayerControllable>()) {
+    e.getComponent<Trigger>().isSet = false;
   }
 }

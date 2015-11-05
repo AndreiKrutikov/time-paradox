@@ -2,6 +2,7 @@
 
 #include <EntityComponentSystem/Component.hpp>
 #include <SFML\Window\Event.hpp>
+#include <unordered_set>
 
 using EntityComponentSystem::Component;
 
@@ -14,14 +15,12 @@ public:
 };
 
 struct Triggerable : Component<Triggerable> {
-  Triggerable(ITriggerable* callback) : receiver(callback) {
-  }
-
-  void onTrigger(bool value) {
-    receiver->onTrigger(value);
+  Triggerable(ITriggerable* callback) : receiver(callback), triggered(false) {
   }
 
   ITriggerable* receiver;
+  bool triggered;
+  std::unordered_set<EntityComponentSystem::Entity> dependecies;
 };
 
 }

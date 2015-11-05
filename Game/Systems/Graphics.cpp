@@ -2,6 +2,7 @@
 #include <EntityComponentSystem/World.hpp>
 #include "EventDispatcher.h"
 #include "../Components/Movable.h"
+#include "../Components/Motorial.h"
 #include "../TimeManager.h"
 #include "../Game.h"
 #include "../Player.h"
@@ -9,7 +10,7 @@
 
 const float Engine::Graphics::TILESIZE = 32;
 
-Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<Drawable>().requiresOneOf<GamePosition,Movable>()), window(window) {
+Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<Drawable>().requiresOneOf<GamePosition, Movable, Motorial>()), window(window) {
 }
 
 void Engine::Graphics::initialize() {
@@ -44,6 +45,11 @@ void Engine::Graphics::update() {
     if (e.hasComponent<Movable>()) {
       auto& pos = e.getComponent<Movable>();
       point = pos.position;
+    }
+
+    if (e.hasComponent <Motorial> ()) {
+      auto& pos = e.getComponent<Motorial>();
+      point = pos.currentPosition;
     }
 
     auto& drawable = e.getComponent<Drawable>();
@@ -92,20 +98,21 @@ void Engine::Graphics::addText(const sf::Text & t) {
   texts.push_back(t);
 }
 
-void Engine::Graphics::onMouseMove(sf::Event::MouseMoveEvent ev) {}
+void Engine::Graphics::onMouseMove(sf::Event::MouseMoveEvent ev) {
+}
 
 void Engine::Graphics::updateCam() {
   auto player = Game::Game::getGameInstance()->player;
   auto position = player->e.getComponent<Movable>().position;
   auto mousePos = sf::Mouse::getPosition();
   auto wSize = window.getSize();
-  
+
   auto x = position.x*TILESIZE + (mousePos.x - wSize.x*1.f) / 2.f;
   auto y = position.y*TILESIZE + (mousePos.y - wSize.y*1.f) / 2.f;
 
-  
+
   auto camSize = camera.getSize();
-  
+
   auto heigth = Game::Game::getGameInstance()->levelManager->height * TILESIZE;
   if (y > heigth - camSize.y / 2) y = heigth - camSize.y / 2;
   auto width = Game::Game::getGameInstance()->levelManager->width * TILESIZE;

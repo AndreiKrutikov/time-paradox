@@ -9,15 +9,15 @@
 namespace Game { namespace Entities {
 
 struct Door : public Engine::ITriggerable {
-  Door(EntityComponentSystem::Entity e, bool initialState, sf::Sprite alternativeSprite);
+  Door(EntityComponentSystem::Entity e, sf::Sprite alternativeSprite, bool type);
   Door(Door&&) = delete;
   Door(const Door&) = delete;
   
   void onTrigger(bool value) override;
   void init();
 
+  bool closed;
   EntityComponentSystem::Entity e;
-  bool isOpened;
   sf::Sprite alternativeSprite;
 };
 

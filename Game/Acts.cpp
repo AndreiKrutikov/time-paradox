@@ -59,52 +59,52 @@ void Game::MoveAct::unexecute() {
 }
 
 
-bool Game::UnconditionalMoveAct::execute() {
-  using namespace Engine::Common;
-  auto& movable = entity.getComponent<Engine::Movable>();
-  Point newPosition = movable.position;
-  auto map = Game::getGameInstance()->accessabilityMap;
-
-  switch (direction) {
-  case Direction::Up:
-    newPosition.y--;
-    break;
-  case Direction::Down:
-    newPosition.y++;
-    break;
-  case Direction::Left:
-    newPosition.x--;
-    break;
-  case Direction::Right:
-    newPosition.x++;
-    break;
-  }
-
-  movable.position = newPosition;
-  return true;
-}
-
-void Game::UnconditionalMoveAct::unexecute() {
-  using namespace Engine::Common;
-  Point newPosition = entity.getComponent<Engine::Movable>().position;
-
-  switch (direction) {
-  case Direction::Up:
-    newPosition.y++;
-    break;
-  case Direction::Down:
-    newPosition.y--;
-    break;
-  case Direction::Left:
-    newPosition.x++;
-    break;
-  case Direction::Right:
-    newPosition.x--;
-    break;
-  }
-
-  entity.getComponent<Engine::Movable>().position = newPosition;
-}
+//bool Game::UnconditionalMoveAct::execute() {
+//  using namespace Engine::Common;
+//  auto& movable = entity.getComponent<Engine::Movable>();
+//  Point newPosition = movable.position;
+//  auto map = Game::getGameInstance()->accessabilityMap;
+//
+//  switch (direction) {
+//  case Direction::Up:
+//    newPosition.y--;
+//    break;
+//  case Direction::Down:
+//    newPosition.y++;
+//    break;
+//  case Direction::Left:
+//    newPosition.x--;
+//    break;
+//  case Direction::Right:
+//    newPosition.x++;
+//    break;
+//  }
+//
+//  movable.position = newPosition;
+//  return true;
+//}
+//
+//void Game::UnconditionalMoveAct::unexecute() {
+//  using namespace Engine::Common;
+//  Point newPosition = entity.getComponent<Engine::Movable>().position;
+//
+//  switch (direction) {
+//  case Direction::Up:
+//    newPosition.y++;
+//    break;
+//  case Direction::Down:
+//    newPosition.y--;
+//    break;
+//  case Direction::Left:
+//    newPosition.x++;
+//    break;
+//  case Direction::Right:
+//    newPosition.x--;
+//    break;
+//  }
+//
+//  entity.getComponent<Engine::Movable>().position = newPosition;
+//}
 
 bool Game::SpawnAct::execute() {
   std::cout << "Game::SpawnAct::execute() " << entity.getId() << std::endl;
@@ -132,4 +132,21 @@ bool Game::DisappearAct::execute() {
 void Game::DisappearAct::unexecute() {
   std::cout << "Game::DisappearAct::unexecute() " << entity.getId() << std::endl;
   entity.activate();
+}
+
+bool Game::AccessabilityChangeAct::execute() {
+  before = Game::getGameInstance()->accessabilityMap->setType(point, after);
+  return true;
+}
+
+void Game::AccessabilityChangeAct::unexecute() {
+  Game::getGameInstance()->accessabilityMap->setType(point, before);
+}
+
+bool Game::FunctorialAct::execute() {
+  return exec();
+}
+
+void Game::FunctorialAct::unexecute() {
+  unexec();
 }

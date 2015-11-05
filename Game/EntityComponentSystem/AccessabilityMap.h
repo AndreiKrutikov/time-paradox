@@ -17,6 +17,8 @@ struct AccessabilityMap {
   bool isOccupied(Engine::Common::Point point);
   bool isDeadly(Engine::Common::Point point);
 
+  uint8_t getType(Engine::Common::Point point);
+  uint8_t setType(Engine::Common::Point point, uint8_t newType);
 
 private:
   uint8_t* data_;

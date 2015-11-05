@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Components\Movable.h"
 #include "Components\Drawable.h"
+#include "Components\PlayerControllable.h"
 #include "Acts.h"
 #include "TimeManager.h"
 #include "Game.h"
@@ -12,6 +13,7 @@ using namespace Engine;
 Game::Player::Player(Entity e) : e(e) {
   e.addComponent<Interactible>(this);
   e.addComponent<Movable>(Common::Point{ 1, 1 });
+  e.addComponent<PlayerControllable>();
 }
 
 void Game::Player::onKeyEvent(sf::Event::KeyEvent ev, bool pressed) {
@@ -48,10 +50,12 @@ Entity Game::Player::createClone() {
   auto old = e;
   std::cout << "old " << old.getId();
   old.removeComponent<Interactible>();
+  old.removeComponent<PlayerControllable>();
   e = e.getWorld().createEntity();
   std::cout << " new " << e.getId() << std::endl;
   e.addComponent<Movable>(old.getComponent<Movable>().position);
   e.addComponent<Drawable>(&old.getComponent<Drawable>());
+  e.addComponent<PlayerControllable>();
   e.activate();
   old.activate();
   return old;

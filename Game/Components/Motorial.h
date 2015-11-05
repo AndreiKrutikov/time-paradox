@@ -7,8 +7,9 @@
 using EntityComponentSystem::Component;
 
 namespace Engine {
+
 struct IMotorialCallback {
-  virtual void onPositionChanged(Engine::Common::Direction direction) { }
+  virtual void onPositionChanged(Engine::Common::Point lastPosition, Engine::Common::Point newPosition) { }
 };
 
 struct Motorial : Component<Motorial> {
@@ -20,7 +21,7 @@ struct Motorial : Component<Motorial> {
   bool isActive;
   float velocity;
   std::chrono::time_point<std::chrono::high_resolution_clock> lastShiftTime;
-  Engine::Common::Point startPosition, endPosition;
+  Engine::Common::Point startPosition, currentPosition, endPosition;
   Engine::Common::Direction direction;
 };
 } //end of Engine namespace

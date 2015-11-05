@@ -50,6 +50,12 @@ bool AccessabilityMap::isDeadly(Engine::Common::Point point) {
   return (map_[point.y][point.x] == 2);
 }
 
+uint8_t AccessabilityMap::setType(Engine::Common::Point point, uint8_t newType) {
+  uint8_t old = map_[point.y][point.x];
+  map_[point.y][point.x] = newType;
+  return old;
+}
+
 AccessabilityMap::~AccessabilityMap() {
   clear();
 }

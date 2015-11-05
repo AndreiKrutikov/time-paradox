@@ -96,3 +96,12 @@ bool Entity::hasComponent() const {
 }
 
 }
+
+namespace std {
+template <> struct hash<EntityComponentSystem::Entity> {
+  size_t operator()(const EntityComponentSystem::Entity & e) const {
+    return e.getId();
+  }
+};
+}
+

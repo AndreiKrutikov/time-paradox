@@ -8,11 +8,10 @@
 #include "Systems\EventDispatcher.h"
 #include "Systems\RegionSystem.h"
 #include "Systems\MotorialSystem.h"
+#include "Systems\TriggerSystem.h"
 #include "TimeManager.h"
 #include "Player.h"
 #include <iostream>
-
-
 
 using namespace EntityComponentSystem;
 using namespace Engine;
@@ -22,8 +21,6 @@ extern Game::Game* gameInstance;
 int main() {
   Game::Game game;
   gameInstance = &game;
-  
-
 
   sf::Texture t;
   sf::RenderWindow window(sf::VideoMode(960, 512), "Wait, OH SHI~~~");
@@ -42,7 +39,7 @@ int main() {
   w.addSystem(regSys);
 
   game.resourceManager->loadFont("cam_font", "unispace rg.ttf");
-  levelManager.loadLevel("maps\\denis\\", "5.json", w);
+  levelManager.loadLevel("maps\\denis\\", "4_.json", w);
   
   game.accessabilityMap = &levelManager.accessMap;
   levelManager.initLevel();
@@ -65,6 +62,10 @@ int main() {
   game.player = &p;
   p.e.getComponent<Movable>().position = levelManager.start;
   p.e.addComponent<Drawable>(t, sf::IntRect(0, 0, 32, 32));
+ 
+  Engine::TriggerSystem ts;
+  w.addSystem(ts);
+
   Game::TimeManager tm_(w.createEntity());
   game.timeManager = &tm_;
   w.refresh();
@@ -72,11 +73,17 @@ int main() {
   while (window.isOpen()) {    
     tm_.update();
     w.refresh();
-    ms.update();
-    graphicsSystem.update();
+
+    if (!tm_.isOutatime()) {
+      regSys.update();
+      ts.update();
+      //ms.update();
+    }
+
     ed.update();
-    regSys.update();
+    graphicsSystem.update();
   }
 
   return 0;
 }
+

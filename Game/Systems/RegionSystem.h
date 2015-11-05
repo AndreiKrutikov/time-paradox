@@ -3,17 +3,24 @@
 #include "../Components/Movable.h"
 #include "../Components/Region.h"
 #include <map>
+#include <unordered_set>
+
 namespace Engine {
 
-	class RegionSystem : public EntityComponentSystem::System<RegionSystem> {
-	public:
-    RegionSystem();
-    void update();
+class RegionSystem : public EntityComponentSystem::System<RegionSystem> {
+public:
+  RegionSystem();
+  void update();
 
-	private:
-    bool isInRegion(EntityComponentSystem::Entity const &movableEntity, EntityComponentSystem::Entity const &regionEntity) const;
-    int32_t findInMap(std::pair <uint64_t, uint64_t> p);
-    std::vector <std:: pair <uint64_t, uint64_t> > movableToRegion;
-	};
+  virtual void onEntityAdded(EntityComponentSystem::Entity& entity) override;
+  virtual void onEntityRemoved(EntityComponentSystem::Entity& entity)override;
+
+private:
+  bool isInRegion(EntityComponentSystem::Entity movableEntity, EntityComponentSystem::Entity regionEntity) const;
+
+  std::vector<std::pair<EntityComponentSystem::Entity, EntityComponentSystem::Entity>> movableToRegion;
+  std::unordered_set<EntityComponentSystem::Entity> regions;
+  std::unordered_set<EntityComponentSystem::Entity> movables;
+};
 
 }
