@@ -29,7 +29,7 @@ int main() {
 
 
   sf::Texture t;
-  sf::RenderWindow window(sf::VideoMode(1920, 1080), "Wait, OH SHI~~~");
+  sf::RenderWindow window(sf::VideoMode(1024, 768), "Wait, OH SHI~~~");
   sf::Image im;
   bool s = im.loadFromFile("maps//robot.png");
   s = t.loadFromImage(im);
@@ -45,11 +45,14 @@ int main() {
     //text.move(0, (text.getCharacterSize() + margin)*levels.size());
 
     levels.emplace_back();
-    levels.back().setColor(sf::Color::Red);
+
+    levels.back().setColor(sf::Color(200, 200, 200)); 
     levels.back().setString(str);
     levels.back().setFont(font);
+    levels.back().move(0, (levels.size() - 1) * (levels.back().getLocalBounds().height + margin));
   }
-
+  levels[0].setStyle(sf::Text::Style::Bold || sf::Text::Style::Underlined);
+  levels[0].setColor(sf::Color::White);
   while (window.isOpen()) {
 
 
@@ -65,16 +68,24 @@ int main() {
             endCycle = true;
             break;
           case sf::Keyboard::Up:
+            levels[levelidx].setStyle(sf::Text::Style::Regular);
+            levels[levelidx].setColor(sf::Color(200, 200, 200));
             levelidx--;
             if (levelidx < 0) {
               levelidx = levels.size() - 1;
             }
+            levels[levelidx].setStyle(sf::Text::Style::Bold);
+            levels[levelidx].setColor(sf::Color::White);
             break;
           case sf::Keyboard::Down:
+            levels[levelidx].setStyle(sf::Text::Style::Regular);
+            levels[levelidx].setColor(sf::Color(200, 200, 200));
             levelidx++;
             if (levelidx == levels.size()) {
               levelidx = 0;
             }
+            levels[levelidx].setStyle(sf::Text::Style::Bold);
+            levels[levelidx].setColor(sf::Color::White);
             break;
           default:
             break;
@@ -132,7 +143,14 @@ int main() {
     game.timeManager = &tm_;
     w.refresh();
     tm_.checkPoint();
-    while (window.isOpen()) {
+    while (window.isOpen()) {      
+      if (!tm_.update())
+        Game::Game::getGameInstance()->state = Game::Game::failed;
+      w.refresh();
+      ms.update();
+      graphicsSystem.update();
+      ed.update();
+      regSys.update(tm_.isOutatime());
 
       if (Game::Game::getGameInstance()->state == Game::Game::win || Game::Game::getGameInstance()->state == Game::Game::failed) {
         while (window.isOpen()) {
@@ -148,24 +166,10 @@ int main() {
             break;
           }
         }
-
-        //p.~Player();
-        //w.refresh();
-        //for (auto e : w.getEntities()) {
-        //  e.kill();
-        //}
-
         w.clear();
         break;
       }
-      
-      if (!tm_.update())
-        Game::Game::getGameInstance()->state = Game::Game::failed;
-      w.refresh();
-      ms.update();
-      graphicsSystem.update();
-      ed.update();
-      regSys.update(tm_.isOutatime());
+
 
       auto plpos = p.e.getComponent<Movable>().position;
       if (plpos.x == levelManager.finish.x && plpos.y == levelManager.finish.y) {
