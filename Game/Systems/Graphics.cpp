@@ -4,6 +4,8 @@
 #include "../Components/Movable.h"
 #include "../TimeManager.h"
 #include "../Game.h"
+#include "../Player.h"
+#include "../LevelManager.h"
 
 const float Engine::Graphics::TILESIZE = 32;
 
@@ -11,14 +13,14 @@ Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSy
 }
 
 void Engine::Graphics::initialize() {
-  camera.view.setCenter({ window.getSize().x / 2.f, window.getSize().y / 2.f });
-  camera.view.setSize({ window.getSize().x * 1.f, window.getSize().y* 1.f });
-  window.setView(camera.view);
-  camera.view.zoom(0.5f);
-  camera.view.setCenter({ window.getSize().x / 4.f, window.getSize().y / 4.f });
-  camera.e = getWorld().createEntity();
-  camera.e.addComponent<Interactible>(&camera);
-  camera.e.activate();
+  camera.setCenter({ window.getSize().x / 2.f, window.getSize().y / 2.f });
+  camera.setSize({ window.getSize().x * 1.f, window.getSize().y* 1.f });
+  window.setView(camera);
+  camera.zoom(0.5f);
+  camera.setCenter({ window.getSize().x / 4.f, window.getSize().y / 4.f });
+  e = getWorld().createEntity();
+  e.addComponent<Interactible>(this);
+  e.activate();
   auto size = window.getSize();
   rt.create(size.x, size.y);
   ppSprite.setTexture(rt.getTexture());
@@ -28,7 +30,8 @@ void Engine::Graphics::initialize() {
 
 void Engine::Graphics::update() {
   rt.clear();
-  rt.setView(camera.view);
+  updateCam();
+  rt.setView(camera);
 
   auto& entities = getEntities();
   for (auto e : entities) {
@@ -87,4 +90,30 @@ void Engine::Graphics::onEntityAdded(EntityComponentSystem::Entity & entity) {
 
 void Engine::Graphics::addText(const sf::Text & t) {
   texts.push_back(t);
+}
+
+void Engine::Graphics::onMouseMove(sf::Event::MouseMoveEvent ev) {}
+
+void Engine::Graphics::updateCam() {
+  auto player = Game::Game::getGameInstance()->player;
+  auto position = player->e.getComponent<Movable>().position;
+  auto mousePos = sf::Mouse::getPosition();
+  auto wSize = window.getSize();
+  
+  auto x = position.x*TILESIZE + (mousePos.x - wSize.x*1.f) / 2.f;
+  auto y = position.y*TILESIZE + (mousePos.y - wSize.y*1.f) / 2.f;
+
+  
+  auto camSize = camera.getSize();
+  
+  auto heigth = Game::Game::getGameInstance()->levelManager->height * TILESIZE;
+  if (y > heigth - camSize.y / 2) y = heigth - camSize.y / 2;
+  auto width = Game::Game::getGameInstance()->levelManager->width * TILESIZE;
+  if (x > width - camSize.x / 2) x = width - camSize.x / 2;
+
+
+  if (x < camSize.x / 2) x = camSize.x / 2;
+  if (y < camSize.y / 2) y = camSize.y / 2;
+
+  camera.setCenter(x, y);
 }

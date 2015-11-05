@@ -1,25 +1,26 @@
 #include "Switch.h"
+#include <iostream>
+
 using namespace EntityComponentSystem;
 using namespace Engine;
+using namespace Game::Entities;
 
-namespace Entities {
-  Switch::Switch(EntityComponentSystem::Entity e, const Common::Point & leftupCorner, int16_t height_, int16_t width_): e(e) {
-    e.addComponent<Region>(leftupCorner, height_, width_, this);
+Switch::Switch(EntityComponentSystem::Entity e, Common::Point leftupCorner, int16_t height, int16_t width) : e(e) {
+  e.addComponent<Region>(leftupCorner, height, width, this);
+}
+
+void Switch::bind(EntityComponentSystem::Entity entity) {
+  triggerObjects.push_back(entity);
+}
+
+void Switch::onObjectEntered(EntityComponentSystem::Entity e) {
+  for (auto& entity : triggerObjects) {
+    entity.getComponent<Triggerable>().onTrigger(true);
   }
+}
 
-  void Switch::bind(EntityComponentSystem::Entity entity) {
-    triggerObjects.push_back(entity);
-  }
-
-  void Switch::onObjectEntered(EntityComponentSystem::Entity e) {
-    for (auto& entity : triggerObjects) {
-      entity.getComponent<Triggerable>().onTrigger(true);
-    }
-  }
-
-  void Switch::onObjectLeave(EntityComponentSystem::Entity e) {
-    for (auto& entity : triggerObjects) {
-      entity.getComponent<Triggerable>().onTrigger(false);
-    }
+void Switch::onObjectLeave(EntityComponentSystem::Entity e) {
+  for (auto& entity : triggerObjects) {
+    entity.getComponent<Triggerable>().onTrigger(false);
   }
 }

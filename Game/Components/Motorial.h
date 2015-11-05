@@ -2,6 +2,7 @@
 
 #include <EntityComponentSystem/Component.hpp>
 #include "Common.h"
+#include <chrono>
 
 using EntityComponentSystem::Component;
 
@@ -11,13 +12,15 @@ struct IMotorialCallback {
 };
 
 struct Motorial : Component<Motorial> {
-  Motorial(Engine::Common::Point velocity, Engine::Common::Point start, Engine::Common::Point finish,
+  Motorial(float velocity, Engine::Common::Point start, Engine::Common::Point finish,
            Engine::Common::Direction dir, IMotorialCallback* callback) : velocity(velocity), 
-           startPosition (start), endPosition (finish), direction(dir), callback(callback) { }
+           startPosition (start), endPosition (finish), direction(dir), callback(callback), isActive(false) { }
 
   IMotorialCallback* callback;
   bool isActive;
-  Engine::Common::Point velocity, startPosition, endPosition;
+  float velocity;
+  std::chrono::time_point<std::chrono::high_resolution_clock> lastShiftTime;
+  Engine::Common::Point startPosition, endPosition;
   Engine::Common::Direction direction;
 };
 } //end of Engine namespace

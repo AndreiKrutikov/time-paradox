@@ -124,7 +124,9 @@ bool Game::TimeManager::update() {
   if (timeSpeed > 0) {
     while (firstUnexecutedAct != timeline.end() && firstUnexecutedAct->get()->timestamp <= currentTime) {
       bool success = firstUnexecutedAct->get()->execute();
-      if (!success) return false; //TimeParadox
+      if (!success) {
+        return false; //TimeParadox
+      }
       firstUnexecutedAct++;
     }
   }

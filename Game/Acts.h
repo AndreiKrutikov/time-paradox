@@ -13,6 +13,13 @@ struct MoveAct : Act {
   Engine::Common::Direction direction;
 };
 
+struct UnconditionalMoveAct : Act {
+  virtual bool execute() override;
+  virtual void unexecute() override;
+
+  Engine::Common::Direction direction;
+};
+
 struct SpawnAct : Act {
   virtual bool execute() override;
   virtual void unexecute() override;

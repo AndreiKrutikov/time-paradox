@@ -28,9 +28,9 @@
                  "properties":
                     {
                      "arr_pos":"34",
-                     "button_id":"button_1",
                      "is_locked":"1",
-                     "paired_tile":"21"
+                     "paired_tile":"21",
+                     "triggerable_id":"1"
                     },
                  "rotation":0,
                  "type":"door",
@@ -46,9 +46,9 @@
                  "properties":
                     {
                      "arr_pos":"86",
-                     "button_id":"button_1",
                      "is_locked":"0",
-                     "paired_tile":"4"
+                     "paired_tile":"4",
+                     "triggerable_id":"2"
                     },
                  "rotation":0,
                  "type":"door",
@@ -64,8 +64,8 @@
                  "properties":
                     {
                      "arr_pos":"125",
-                     "switches":["door_1", "door_2"],
-                     "is_on":"0"
+                     "is_on":"0",
+                     "switches":"[1,2]"
                     },
                  "rotation":0,
                  "type":"button",

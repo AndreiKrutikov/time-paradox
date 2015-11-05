@@ -12,7 +12,7 @@ namespace Game {
 
 namespace Engine {
 
-class Graphics : public EntityComponentSystem::System<Graphics> {
+class Graphics : public EntityComponentSystem::System<Graphics>, public IInteractible{
 public:
   Graphics(sf::RenderWindow& window); 
   virtual void initialize() override;
@@ -23,15 +23,16 @@ public:
   void addText(const sf::Text& t);
 
 private:
-  struct Camera : public IInteractible {
-    virtual void onMouseWheel(sf::Event::MouseWheelScrollEvent ev) override {
-      view.zoom(exp(ev.delta*0.1f));
-    };
+  virtual void onMouseWheel(sf::Event::MouseWheelScrollEvent ev) override {
+    camera.zoom(exp(ev.delta*0.1f));
+  };
 
-    sf::View view;
-    EntityComponentSystem::Entity e;
-  } camera;
+  virtual void onMouseMove(sf::Event::MouseMoveEvent ev) override;
 
+  void updateCam();
+
+  sf::View camera;
+  EntityComponentSystem::Entity e;
   sf::RenderTexture rt;
   sf::Sprite ppSprite; 
   sf::Shader ppShader;

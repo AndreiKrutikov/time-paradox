@@ -21,6 +21,7 @@ struct AccessabilityMap {
 private:
   uint8_t* data_;
   uint8_t** map_;
-
+  uint16_t height;
+  uint16_t width;
 };
 }

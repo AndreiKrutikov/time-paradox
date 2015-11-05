@@ -11,4 +11,9 @@ void Engine::Interactible::onEvent(sf::Event ev) {
   if (ev.type == sf::Event::MouseWheelScrolled) {
     receiver->onMouseWheel(ev.mouseWheelScroll);
   }
+
+  if (ev.type == sf::Event::MouseMoved) {
+    receiver->onMouseMove(ev.mouseMove);
+  }
+
 }

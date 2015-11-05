@@ -6,17 +6,19 @@
 #include <SFML\Graphics\Texture.hpp>
 #include <SFML\Graphics\Sprite.hpp>
 
-namespace Entities {
-struct Door : public Engine::Triggerable{
-  Door(EntityComponentSystem::Entity e, EntityComponentSystem::AccessabilityMap& map, bool initialState, sf::Sprite alternativeSprite);
-  void onTrigger(bool pressed);
+namespace Game { namespace Entities {
+
+struct Door : public Engine::ITriggerable {
+  Door(EntityComponentSystem::Entity e, bool initialState, sf::Sprite alternativeSprite);
+  Door(Door&&) = delete;
+  Door(const Door&) = delete;
+  
+  void onTrigger(bool value) override;
+  void init();
 
   EntityComponentSystem::Entity e;
-  EntityComponentSystem::AccessabilityMap& map;
   bool isOpened;
-private:
   sf::Sprite alternativeSprite;
 };
 
-}//end of namespace Entities
-
+} } //Entities

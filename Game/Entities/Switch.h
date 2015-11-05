@@ -5,9 +5,11 @@
 #include "Components\Triggerable.h"
 #include "Components\Region.h"
 
-namespace Entities {
-struct Switch: public Engine::IRegionCallback {
-  Switch(EntityComponentSystem::Entity e, const Engine::Common::Point & leftupCorner, int16_t height_, int16_t width_);
+namespace Game { namespace Entities {
+
+struct Switch : public Engine::IRegionCallback {
+  Switch(EntityComponentSystem::Entity e, Engine::Common::Point leftupCorner, int16_t height, int16_t width);
+
   void bind(EntityComponentSystem::Entity e);
   void onObjectEntered(EntityComponentSystem::Entity e) override;
   void onObjectLeave(EntityComponentSystem::Entity e) override;
@@ -16,5 +18,4 @@ private:
   std::vector<EntityComponentSystem::Entity> triggerObjects;
 };
 
-
-}
+} }

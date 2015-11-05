@@ -1,7 +1,7 @@
 { "height":15,
  "layers":[
         {
-         "data":[21, 64, 85, 85, 85, 85, 85, 85, 85, 85, 85, 48, 49, 50, 85, 21, 64, 85, 85, 85, 85, 85, 85, 85, 85, 85, 62, 73, 64, 85, 21, 64, 85, 85, 85, 85, 6, 7, 8, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 85, 85, 20, 73, 22, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 85, 85, 44, 59, 45, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 85, 85, 34, 35, 36, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 85, 85, 85, 85, 85, 85, 115, 21, 21, 64, 85, 21, 64, 85, 85, 85, 85, 85, 85, 85, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 85, 85, 85, 85, 85, 85, 85, 62, 21, 115, 16, 21, 64, 85, 85, 85, 85, 85, 85, 85, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 85, 6, 7, 8, 85, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 85, 20, 73, 22, 85, 85, 85, 45, 59, 44, 85, 21, 64, 85, 85, 85, 34, 35, 36, 85, 85, 85, 62, 21, 64, 85, 73, 64, 85, 85, 85, 85, 85, 85, 85, 85, 85, 62, 73, 64, 85, 21, 64, 85, 85, 85, 85, 85, 85, 85, 85, 85, 76, 77, 78, 85],
+         "data":[49, 50, 85, 85, 172, 85, 85, 85, 85, 85, 85, 48, 49, 50, 85, 21, 64, 85, 85, 172, 85, 85, 85, 85, 85, 85, 62, 73, 64, 85, 21, 64, 85, 85, 172, 85, 6, 7, 8, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 172, 85, 20, 73, 22, 85, 85, 76, 21, 78, 85, 21, 64, 85, 85, 172, 85, 44, 59, 45, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 172, 85, 34, 35, 36, 85, 85, 62, 21, 64, 85, 21, 82, 171, 171, 1610612906, 171, 171, 171, 171, 171, 115, 21, 21, 64, 85, 21, 64, 85, 85, 172, 85, 85, 85, 85, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 172, 85, 85, 85, 85, 85, 85, 62, 21, 115, 16, 21, 64, 85, 85, 172, 85, 85, 85, 85, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 172, 6, 7, 8, 85, 85, 85, 62, 21, 64, 85, 21, 64, 85, 85, 172, 20, 73, 22, 85, 85, 85, 45, 59, 44, 85, 21, 64, 85, 85, 172, 34, 35, 36, 85, 85, 85, 62, 21, 64, 85, 73, 64, 85, 85, 172, 85, 85, 85, 85, 85, 85, 62, 73, 64, 85, 77, 78, 85, 85, 172, 85, 85, 85, 85, 85, 85, 76, 77, 78, 85],
          "height":15,
          "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
@@ -37,7 +37,8 @@
                  "name":"button_1",
                  "properties":
                     {
-                     "arr_pos":"195"
+                     "arr_pos":"195",
+                     "switches":"[1,2]"
                     },
                  "rotation":0,
                  "type":"button",
@@ -53,7 +54,7 @@
                  "properties":
                     {
                      "arr_pos":"171",
-                     "switches":"[\"door_2\"]"
+                     "switches":"[3,7]"
                     },
                  "rotation":0,
                  "type":"button",
@@ -69,9 +70,9 @@
                  "properties":
                     {
                      "arr_pos":"67",
-                     "button_id":"2",
                      "is_locked":"1",
-                     "paired_tile":"21"
+                     "paired_tile":"21",
+                     "triggerable_id":"3"
                     },
                  "rotation":0,
                  "type":"door",
@@ -102,7 +103,7 @@
                  "properties":
                     {
                      "arr_pos":"52",
-                     "switches":"[\"door_3\"]"
+                     "switches":"[4]"
                     },
                  "rotation":0,
                  "type":"button",
@@ -118,9 +119,9 @@
                  "properties":
                     {
                      "arr_pos":"100",
-                     "button_id":"3",
                      "is_locked":"1",
-                     "paired_tile":"21"
+                     "paired_tile":"21",
+                     "triggerable_id":"4"
                     },
                  "rotation":0,
                  "type":"door",
@@ -136,7 +137,7 @@
                  "properties":
                     {
                      "arr_pos":"27",
-                     "switches":"[\"door_4\"] "
+                     "switches":"[5] "
                     },
                  "rotation":0,
                  "type":"button",
@@ -152,7 +153,7 @@
                  "properties":
                     {
                      "arr_pos":"207",
-                     "switches":"door_5"
+                     "switches":"[6]"
                     },
                  "rotation":0,
                  "type":"button",
@@ -168,9 +169,9 @@
                  "properties":
                     {
                      "arr_pos":"133",
-                     "button_id":"4",
                      "is_locked":"1",
-                     "paired_tile":"21"
+                     "paired_tile":"21",
+                     "triggerable_id":"6"
                     },
                  "rotation":0,
                  "type":"door",
@@ -186,9 +187,9 @@
                  "properties":
                     {
                      "arr_pos":"177",
-                     "button_id":"5",
                      "is_locked":"1",
-                     "paired_tile":"21"
+                     "paired_tile":"21",
+                     "triggerable_id":"5"
                     },
                  "rotation":0,
                  "type":"door",
@@ -205,8 +206,10 @@
                  "properties":
                     {
                      "arr_pos":"49",
-                     "button_id":"button_1",
-                     "tile_id":"47"
+                     "bounds":"[4,0,4,14]",
+                     "direction":"down",
+                     "tile_id":"47",
+                     "triggerable_id":"1"
                     },
                  "rotation":0,
                  "type":"platform",
@@ -223,8 +226,10 @@
                  "properties":
                     {
                      "arr_pos":"92",
-                     "button_id":"button_2",
-                     "tile_id":"47"
+                     "bounds":"[2,6,9,6]",
+                     "direction":"right",
+                     "tile_id":"47",
+                     "triggerable_id":"2"
                     },
                  "rotation":0,
                  "type":"platform",
@@ -232,6 +237,24 @@
                  "width":32,
                  "x":64,
                  "y":224
+                }, 
+                {
+                 "height":29,
+                 "id":15,
+                 "name":"door_6",
+                 "properties":
+                    {
+                     "arr_pos":"57",
+                     "is_locked":"0",
+                     "paired_tile":"4",
+                     "triggerable_id":"7"
+                    },
+                 "rotation":0,
+                 "type":"door",
+                 "visible":true,
+                 "width":32,
+                 "x":384,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -240,7 +263,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":15,
+ "nextobjectid":16,
  "orientation":"orthogonal",
  "properties":
     {
@@ -290,6 +313,13 @@
          "spacing":0,
          "tilecount":1,
          "tileheight":32,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "get_through":"0"
+                }
+            },
          "tilewidth":32
         }, 
         {
@@ -306,6 +336,37 @@
          "spacing":0,
          "tilecount":84,
          "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "firstgid":170,
+         "image":"Tileset_32x32.png",
+         "imageheight":160,
+         "imagewidth":256,
+         "margin":0,
+         "name":"Tileset_32x32",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":40,
+         "tileheight":32,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "get_through":"0"
+                },
+             "1":
+                {
+                 "get_through":"0"
+                },
+             "2":
+                {
+                 "get_through":"0"
+                }
+            },
          "tilewidth":32
         }],
  "tilewidth":32,

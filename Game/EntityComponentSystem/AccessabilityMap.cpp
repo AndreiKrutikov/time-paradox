@@ -5,6 +5,8 @@ namespace EntityComponentSystem {
 AccessabilityMap::AccessabilityMap():map_(nullptr), data_(nullptr) {}
 
 void AccessabilityMap::createMap(uint16_t height, uint16_t width) {
+  this->height = height;
+  this->width = width;
   clear();
   data_ = new uint8_t[height*width];
   map_ = new uint8_t*[height];
@@ -36,6 +38,7 @@ void AccessabilityMap::setDeadly(Engine::Common::Point point) {
 }
 
 bool AccessabilityMap::isFree(Engine::Common::Point point) {
+  if (point.y < 0 || point.x < 0 || point.y >= height || point.x >= width) return false;
   return (map_[point.y][point.x] == 0);
 }
 
