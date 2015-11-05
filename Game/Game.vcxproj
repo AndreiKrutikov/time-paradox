@@ -179,7 +179,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Act.h" />
-    <ClInclude Include="Acts.h" />
+    <ClInclude Include="Components\PlayerControlable.h" />
+    <ClInclude Include="Utils\Acts.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CloneObject.h" />
     <ClInclude Include="Common.h" />

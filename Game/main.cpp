@@ -26,7 +26,7 @@ int main() {
 
 
   sf::Texture t;
-  sf::RenderWindow window(sf::VideoMode(960, 512), "Wait, OH SHI~~~");
+  sf::RenderWindow window(sf::VideoMode(1920, 1080), "Wait, OH SHI~~~");
   sf::Image im;
   bool s = im.loadFromFile("maps\\denis\\robot.png");
   s = t.loadFromImage(im);
@@ -42,7 +42,7 @@ int main() {
   w.addSystem(regSys);
 
   game.resourceManager->loadFont("cam_font", "unispace rg.ttf");
-  levelManager.loadLevel("maps\\denis\\", "3.json", w);
+  levelManager.loadLevel("maps\\denis\\", "4.json", w);
   
   game.accessabilityMap = &levelManager.accessMap;
   levelManager.initLevel();
@@ -75,7 +75,7 @@ int main() {
     ms.update();
     graphicsSystem.update();
     ed.update();
-    regSys.update();
+    regSys.update(tm_.isOutatime());
   }
 
   return 0;

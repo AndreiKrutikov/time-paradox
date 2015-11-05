@@ -2,7 +2,9 @@
 #include <map>
 #include <vector>
 #include <EntityComponentSystem/World.hpp>
-
+#include "Components\PlayerControlable.h"
+#include "TimeManager.h"
+#include "Game.h"
 Engine::RegionSystem::RegionSystem() : System(EntityComponentSystem::ComponentFilter().requiresOneOf <Movable, Region>()) {
 }
 
@@ -15,7 +17,7 @@ int32_t Engine::RegionSystem::findInMap(std::pair <uint64_t, uint64_t> p) {
   return -1;
 }
 
-void Engine::RegionSystem::update() {
+void Engine::RegionSystem::update(bool outtatime) {
   auto& entities = getEntities();
   std::vector < std::pair <uint64_t, uint64_t> > newMap;
   for (size_t i = 0; i < entities.size(); ++i) {
@@ -23,7 +25,7 @@ void Engine::RegionSystem::update() {
     if (e.hasComponent<Movable>()) {
       for (auto& r : entities) {
         if (r.hasComponent<Region>())
-          if (isInRegion(e, r))
+          if (isInRegion(e, r) && !(Game::Game::getGameInstance()->timeManager->isOutatime() && e.hasComponent<PlayerControlable>()))
             newMap.push_back(std::make_pair(e.getId(), r.getId()));
       }
     }

@@ -8,7 +8,7 @@ namespace Engine {
 	class RegionSystem : public EntityComponentSystem::System<RegionSystem> {
 	public:
     RegionSystem();
-    void update();
+    void update(bool outtatime);
 
 	private:
     bool isInRegion(EntityComponentSystem::Entity const &movableEntity, EntityComponentSystem::Entity const &regionEntity) const;
