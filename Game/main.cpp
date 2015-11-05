@@ -42,7 +42,7 @@ int main() {
   w.addSystem(regSys);
 
   game.resourceManager->loadFont("cam_font", "unispace rg.ttf");
-  levelManager.loadLevel("maps\\denis\\", "3.json", w);
+  levelManager.loadLevel("maps\\denis\\", "5.json", w);
   
   game.accessabilityMap = &levelManager.accessMap;
   levelManager.initLevel();

@@ -43,8 +43,7 @@ void MovingPlatform::onPositionChanged(Engine::Common::Direction direction) {
     shift.y = 0;
     break;
   }
-
-
+  
   auto position = platformEntity.getComponent<Engine::Movable>().position;
   position.x += shift.x;
   position.y += shift.y;
@@ -55,8 +54,7 @@ void MovingPlatform::onPositionChanged(Engine::Common::Direction direction) {
   ptr->direction = direction;
   std::unique_ptr<Act> act(ptr);
   Game::getGameInstance()->timeManager->addAndExecuteAct(std::move(act));
-
-
+  
   for (auto entityId : myEntities) {
     if (entityId == platformEntity.getId()) continue;
     auto ptr = new UnconditionalMoveAct;
@@ -69,8 +67,7 @@ void MovingPlatform::onPositionChanged(Engine::Common::Direction direction) {
   position.x -= shift.x;
   position.y -= shift.y;
   Game::getGameInstance()->accessabilityMap->setOccupied(position);
-
-
+  
 
   auto& region = platformEntity.getComponent<Engine::Region>();
   region.corner = position;
