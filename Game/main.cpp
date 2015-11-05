@@ -70,7 +70,8 @@ int main() {
   w.refresh();
   tm_.checkPoint();
   while (window.isOpen()) {    
-    tm_.update();
+    if (!tm_.update())
+      std::cout << "Bad" << std::endl;
     w.refresh();
     ms.update();
     graphicsSystem.update();

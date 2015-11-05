@@ -3,7 +3,6 @@
 #include <EntityComponentSystem\Entity.hpp>
 #include "EntityComponentSystem\AccessabilityMap.h"
 #include "Game.h"
-
 using namespace EntityComponentSystem;
 
 #include <iostream>
@@ -13,6 +12,7 @@ bool Game::MoveAct::execute() {
   auto& movable = entity.getComponent<Engine::Movable>();
   Point newPosition = movable.position;
   auto map = Game::getGameInstance()->accessabilityMap;
+  map->setFree(newPosition);
 
   switch (direction) {
   case Direction::Up :
@@ -29,8 +29,9 @@ bool Game::MoveAct::execute() {
     break;
   }
 
-  if (map->isFree(newPosition)) {
+  if (!map->isOccupied(newPosition)) {
     movable.position = newPosition;
+    map->setOccupied(newPosition);
     return true;
   } else
     return false;
@@ -39,6 +40,7 @@ bool Game::MoveAct::execute() {
 void Game::MoveAct::unexecute() {
   using namespace Engine::Common;
   Point newPosition = entity.getComponent<Engine::Movable>().position;
+  Game::getGameInstance()->accessabilityMap->setFree(newPosition);
 
   switch (direction) {
   case Direction::Up:
@@ -55,6 +57,10 @@ void Game::MoveAct::unexecute() {
     break;
   }
 
+  if (Game::getGameInstance()->accessabilityMap->isOccupied(newPosition))
+    std::cout << "Bad" << std::endl;
+  else
+    Game::getGameInstance()->accessabilityMap->setOccupied(newPosition);
   entity.getComponent<Engine::Movable>().position = newPosition;
 }
 
@@ -125,6 +131,8 @@ void Game::SpawnAct::unexecute() {
 
 bool Game::DisappearAct::execute() {
   std::cout << "Game::DisappearAct::execute() " << entity.getId() << std::endl;
+  auto& map = Game::getGameInstance()->accessabilityMap;
+  map->setFree(entity.getComponent<Engine::Movable>().position);
   entity.deactivate();
   return true;
 }

@@ -1,5 +1,6 @@
 #include "CloneObject.h"
-
+#include "Game.h"
+#include "EntityComponentSystem\AccessabilityMap.h"
 using namespace Engine;
 void Game::Clone::killClone() {
   e.deactivate();
@@ -31,4 +32,5 @@ void Game::Clone::moveClone(Common::Direction dir) {
     movComp.position.x++;
     break;
   }
+
 }

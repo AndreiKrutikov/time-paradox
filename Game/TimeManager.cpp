@@ -115,7 +115,8 @@ void Game::TimeManager::addAndExecuteAct(std::unique_ptr<Act> act) {
       act->timestamp = getGameTime();
       firstUnexecutedAct = timeline.insert(firstUnexecutedAct, std::move(act));
       firstUnexecutedAct++;
-    }
+    } else
+      std::cout << "Bad!" << std::endl;
   }
 }
 
