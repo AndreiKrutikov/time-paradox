@@ -36,9 +36,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InGameCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EntityComponentSystem\ComponentFilter.cpp">
       <Filter>EntitySystem\Source Files</Filter>
     </ClCompile>
@@ -113,12 +110,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InGameCamera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EntityComponentSystem\detail\ClassTypeId.hpp">
       <Filter>EntitySystem\Header Files</Filter>
     </ClInclude>

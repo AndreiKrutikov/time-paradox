@@ -8,9 +8,6 @@
 #include <EntityComponentSystem/Component.hpp>
 #include <EntityComponentSystem/TypeLists.hpp>
 
-
-#include <iostream>
-
 namespace EntityComponentSystem {
 namespace detail {
 
@@ -44,11 +41,6 @@ private:
 
     ImplComponentArray components;
     ComponentTypeList componentTypeList;
-
-    ~EntityComponents() {
-      static size_t e = 0;
-      std::cerr << "~EntityComponents() " << e++ << std::endl;
-    }
   };
 
   std::vector<EntityComponents> componentEntries;

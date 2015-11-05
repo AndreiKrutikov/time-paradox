@@ -44,15 +44,11 @@ void Game::Player::onKeyEvent(sf::Event::KeyEvent ev, bool pressed) {
   }
 }
 
-#include <iostream>
-
 Entity Game::Player::createClone() {
   auto old = e;
-  std::cout << "old " << old.getId();
   old.removeComponent<Interactible>();
   old.removeComponent<PlayerControlable>();
   e = e.getWorld().createEntity();
-  std::cout << " new " << e.getId() << std::endl;
   e.addComponent<Movable>(old.getComponent<Movable>().position);
   e.addComponent<Drawable>(old.getComponent<Drawable>().sprite);
   e.addComponent<PlayerControlable>();

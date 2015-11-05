@@ -164,7 +164,6 @@
     <ClCompile Include="EntityComponentSystem\World.cpp" />
     <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="InGameCamera.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Entities\MovingPlatform.cpp" />
@@ -181,7 +180,6 @@
     <ClInclude Include="Act.h" />
     <ClInclude Include="Components\PlayerControlable.h" />
     <ClInclude Include="Utils\Acts.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="CloneObject.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Components\Drawable.h" />
@@ -204,7 +202,6 @@
     <ClInclude Include="EntityComponentSystem\World.hpp" />
     <ClInclude Include="EntityComponentSystem\AccessabilityMap.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="InGameCamera.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Entities\MovingPlatform.h" />
     <ClInclude Include="ResourceManagers.h" />

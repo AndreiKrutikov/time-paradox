@@ -5,11 +5,6 @@
 
 #include <EntityComponentSystem/detail/ClassTypeId.hpp>
 
-
-#include <iostream>
-#include <typeinfo>
-
-
 namespace EntityComponentSystem {
 
 class BaseComponent {
@@ -25,7 +20,6 @@ public:
   }
   
   virtual ~Component() {
-    std::cerr << "~ " << typeid(T).name() << std::endl;
   }
 
 };
