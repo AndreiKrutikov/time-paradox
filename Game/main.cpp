@@ -24,6 +24,9 @@ int main() {
   gameInstance = &game;
   
 
+  sf::Font font;
+  bool f = font.loadFromFile("unispace rg.ttf");
+
 
   sf::Texture t;
   sf::RenderWindow window(sf::VideoMode(1920, 1080), "Wait, OH SHI~~~");
@@ -39,12 +42,12 @@ int main() {
   uint16_t margin = 10;
   std::string str;
   while (std::getline(file, str)) {
-    sf::Text text;
-    text.setColor(sf::Color(255, 0, 0));
-    text.setString(str);
     //text.move(0, (text.getCharacterSize() + margin)*levels.size());
 
-    levels.push_back(text);
+    levels.emplace_back();
+    levels.back().setColor(sf::Color::Red);
+    levels.back().setString(str);
+    levels.back().setFont(font);
   }
 
   while (window.isOpen()) {

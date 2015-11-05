@@ -54,7 +54,7 @@ Entity Game::Player::createClone() {
   e = e.getWorld().createEntity();
   std::cout << " new " << e.getId() << std::endl;
   e.addComponent<Movable>(old.getComponent<Movable>().position);
-  e.addComponent<Drawable>(&old.getComponent<Drawable>());
+  e.addComponent<Drawable>(old.getComponent<Drawable>().sprite);
   e.addComponent<PlayerControlable>();
   e.activate();
   old.activate();
