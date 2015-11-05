@@ -43,7 +43,7 @@ void Engine::Graphics::update() {
 
   auto& entities = getEntities();
   for (auto e : entities) {
-    Common::Point point;
+    Common::Point point{ 0, 0 };
     if (e.hasComponent<GamePosition>()) {
       auto& pos = e.getComponent<GamePosition>();
       point = pos.point;
@@ -56,8 +56,28 @@ void Engine::Graphics::update() {
 
     auto& drawable = e.getComponent<Drawable>();
     drawable.sprite.setPosition(sf::Vector2f{ point.x * TILESIZE, point.y * TILESIZE });
+    int i = 1;
     rt.draw(drawable.sprite);
   }
+
+
+  if (Game::Game::getGameInstance()->state == Game::Game::failed) {
+    sf::Sprite failImg_(failImg);
+
+    failImg_.setPosition(camera.getCenter());
+    rt.draw(failImg_);
+  }
+  
+
+  if (Game::Game::getGameInstance()->state == Game::Game::win) {
+    sf::Sprite winImg_(winImg);
+
+    winImg_.setPosition(camera.getCenter());
+    rt.draw(winImg_);
+  }
+
+
+
 
   rt.display();
 
@@ -89,16 +109,6 @@ void Engine::Graphics::update() {
 
 
   
-  if (Game::Game::getGameInstance()->state == Game::Game::failed) {
-    sf::Sprite failImg_(failImg);
-    window.draw(failImg_);
-  }
-
-  if (Game::Game::getGameInstance()->state == Game::Game::win) {
-    sf::Sprite winImg_(winImg);
-    window.draw(winImg_);
-  }
-
 
 
 

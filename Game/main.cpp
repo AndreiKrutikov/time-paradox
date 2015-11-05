@@ -28,8 +28,11 @@ int main() {
   sf::Texture t;
   sf::RenderWindow window(sf::VideoMode(1920, 1080), "Wait, OH SHI~~~");
   sf::Image im;
-  bool s = im.loadFromFile("kuzrobot.png");
+  bool s = im.loadFromFile("maps//denis//robot.png");
   s = t.loadFromImage(im);
+
+  sf::Texture t2;
+  t2.loadFromFile("kuzrobot.png");
   std::cout << s;
 
   World w;
@@ -42,7 +45,7 @@ int main() {
   w.addSystem(regSys);
 
   game.resourceManager->loadFont("cam_font", "unispace rg.ttf");
-  levelManager.loadLevel("maps\\denis\\", "2.json", w);
+  levelManager.loadLevel("maps\\denis\\", "1.json", w);
   
   game.accessabilityMap = &levelManager.accessMap;
   levelManager.initLevel();
@@ -81,6 +84,9 @@ int main() {
     auto plpos = p.e.getComponent<Movable>().position;
     if (plpos.x == levelManager.finish.x && plpos.y == levelManager.finish.y) {
       game.state = Game::Game::win;
+      p.e.removeComponent<Drawable>();
+      p.e.addComponent<Drawable>(t2, sf::IntRect(0, 0, 32, 32));
+      p.e.activate();
     }
 
 
