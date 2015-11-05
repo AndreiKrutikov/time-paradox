@@ -13,6 +13,7 @@ DISCLAIMER: Changing observable past might cause The End of the World
 ### Controlls ###
 
 Use Up, Left, Right, Down to move
+
 Use space to stop time, then press "-" to travel into the past, or "+" to visit your future
 
 ### How do I build this game ###
