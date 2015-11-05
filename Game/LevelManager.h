@@ -22,7 +22,7 @@ private:
   Engine::Common::Point start, finish;
   
   void loadTileSet(Engine::Common::JsonValue& tilesetArray, const std::string& path);
-  void loadTileLayer(Engine::Common::JsonValue& layer, uint16_t width, EntityComponentSystem::World& w);
+  EntityComponentSystem::World::EntityArray loadTileLayer(Engine::Common::JsonValue& layer, uint16_t width, EntityComponentSystem::World& w);
 
 };
 

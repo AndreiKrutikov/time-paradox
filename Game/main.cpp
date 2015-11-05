@@ -6,6 +6,7 @@
 #include "Components\Movable.h"
 #include "Game.h"
 #include "Systems\EventDispatcher.h"
+#include "Systems\RegionSystem.h"
 #include "TimeManager.h"
 #include "Player.h"
 #include <iostream>
@@ -35,7 +36,10 @@ int main() {
   Game::LevelManager levelManager;
   game.levelManager = &levelManager;
   game.resourceManager = &levelManager.resourceManagers;
-  
+
+  RegionSystem regSys;
+  w.addSystem(regSys);
+
   game.resourceManager->loadFont("cam_font", "unispace rg.ttf");
   levelManager.loadLevel("maps\\denis\\", "4.json", w);
   
@@ -44,6 +48,8 @@ int main() {
   Graphics graphicsSystem(window);
   game.graphics = &graphicsSystem;
   EventDispatcher ed(window);
+  
+
   w.addSystem(graphicsSystem);
   w.addSystem(ed);
 
@@ -63,6 +69,7 @@ int main() {
     w.refresh();
     graphicsSystem.update();
     ed.update();
+    regSys.update();
   }
 
   return 0;
