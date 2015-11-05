@@ -5,6 +5,11 @@
 
 #include <EntityComponentSystem/detail/ClassTypeId.hpp>
 
+
+#include <iostream>
+#include <typeinfo>
+
+
 namespace EntityComponentSystem {
 
 class BaseComponent {
@@ -18,6 +23,11 @@ public:
   static detail::TypeId GetTypeId() {
     return detail::ClassTypeId<BaseComponent>::GetTypeId<T>();
   }
+  
+  virtual ~Component() {
+    std::cerr << "~ " << typeid(T).name() << std::endl;
+  }
+
 };
 
 typedef std::vector<std::reference_wrapper<BaseComponent>> ComponentArray;

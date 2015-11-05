@@ -8,6 +8,9 @@
 #include <EntityComponentSystem/Component.hpp>
 #include <EntityComponentSystem/TypeLists.hpp>
 
+
+#include <iostream>
+
 namespace EntityComponentSystem {
 namespace detail {
 
@@ -35,12 +38,17 @@ private:
 
   struct EntityComponents {
     EntityComponents() = default;
-    //EntityComponents(EntityComponents&& e)
-    //  : components(std::move(e.components)),
-    //  componentTypeList(std::move(e.componentTypeList)) { }
+    EntityComponents(EntityComponents&& e)
+      : components(std::move(e.components)),
+      componentTypeList(std::move(e.componentTypeList)) { }
 
     ImplComponentArray components;
     ComponentTypeList componentTypeList;
+
+    ~EntityComponents() {
+      static size_t e = 0;
+      std::cerr << "~EntityComponents() " << e++ << std::endl;
+    }
   };
 
   std::vector<EntityComponents> componentEntries;

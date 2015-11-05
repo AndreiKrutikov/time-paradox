@@ -25,6 +25,10 @@ public:
     return outatime;
   }
 
+  ~TimeManager() {
+    e.removeComponent<Engine::Interactible>();
+  }
+
 private:
   std::chrono::time_point<std::chrono::high_resolution_clock> gameTimeOrigin;
   std::chrono::time_point<std::chrono::high_resolution_clock> realtimeOrigin;

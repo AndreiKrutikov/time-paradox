@@ -13,6 +13,11 @@ public:
   EntityComponentSystem::Entity createClone();
 
   EntityComponentSystem::Entity e;
+
+  ~Player() {
+    e.kill();
+    e.~Entity();
+  }
 };
 
 }
