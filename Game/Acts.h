@@ -2,7 +2,6 @@
 
 #include "Act.h"
 #include "Common.h"
-#include "Components\Triggerable.h"
 #include <functional>
 
 namespace Game {

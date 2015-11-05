@@ -28,7 +28,7 @@
                  "properties":
                     {
                      "arr_pos":"34",
-                     "depends":"[1]",
+                     "depends":"[1,2]",
                      "is_locked":"1",
                      "paired_tile":"21"
                     },
@@ -46,7 +46,7 @@
                  "properties":
                     {
                      "arr_pos":"86",
-                     "depends":"[1,2]",
+                     "depends":"[1]",
                      "is_locked":"0",
                      "paired_tile":"4"
                     },

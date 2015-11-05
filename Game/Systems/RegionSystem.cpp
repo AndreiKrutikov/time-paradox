@@ -1,4 +1,7 @@
 #include "RegionSystem.h"
+#include "..\Game.h"
+#include "../Components/PlayerControllable.h"
+#include "../TimeManager.h"
 #include <map>
 #include <vector>
 #include <EntityComponentSystem/World.hpp>
@@ -9,15 +12,10 @@ Engine::RegionSystem::RegionSystem() : System(EntityComponentSystem::ComponentFi
 void Engine::RegionSystem::update() {
   for (auto region : regions) {
     auto& reg = region.getComponent<Region>();
+    reg.entitiesInRegion.clear();
     for (auto movable : movables) {
-      if (reg.entitiesInRegion.count(movable) > 0 && !isInRegion(movable, region)) {
-          reg.entitiesInRegion.erase(movable);
-          reg.callback->onEntityLeave(movable);        
-      }
-
-      if (reg.entitiesInRegion.count(movable) == 0 && isInRegion(movable, region)) {
+      if (isInRegion(movable, region) && !(movable.hasComponent<PlayerControllable>() && Game::Game::getGameInstance()->timeManager->isOutatime())) {
         reg.entitiesInRegion.insert(movable);
-        reg.callback->onEntityEnter(movable);
       }
     }
   }

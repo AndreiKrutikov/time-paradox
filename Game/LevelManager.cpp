@@ -10,14 +10,13 @@
 #include "Common.h"
 #include "Components\GamePosition.h"
 #include "Components\Drawable.h"
-#include "Entities\Door.h"
-#include "Entities\Switch.h"
+#include "Components\Door.h"
+#include "Components\Button.h"
 #include "Game.h"
 #include "Components\Motorial.h"
 #include "Components\Region.h"
 #include "Components\Movable.h"
-#include "Components\Trigger.h"
-#include "Components\Triggerable.h"
+
 
 using namespace EntityComponentSystem;
 using namespace Game;
@@ -74,21 +73,15 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
         } else if (s == "exit") {
           finish = pos;
         } else if (s == "button") {
-          buttons.emplace_back(entities[idx]);
           triggers[std::stoul((x("properties"))("trigger_id").getString())] = entities[idx];
-          entities[idx].addComponent<Trigger>();
-          entities[idx].addComponent<Region>(pos, int16_t(1), int16_t(1), &buttons.back());
+          entities[idx].addComponent<Region>(pos, int16_t(1), int16_t(1));
+          entities[idx].addComponent<Button>();
         } else if (s == "door") {          
           bool isClosed = (x("properties"))("is_locked").getString() == "1";
           uint16_t altidx = static_cast<uint16_t>(std::stoi((x("properties"))("paired_tile").getString()));
           uint16_t textureId = static_cast<uint16_t>(data.getArray()[idx].getInteger());
           sf::Sprite alterSprite(resourceManagers.getTileTexture(altidx), resourceManagers.getTileRectangle(altidx));
-          if (isClosed) {
-            accessMap.setOccupied(pos);
-          }
-
-          doors.emplace_back(entities[idx], alterSprite, isClosed);
-          entities[idx].addComponent<Triggerable>(&doors.back());
+          entities[idx].addComponent<Door>(!isClosed, alterSprite);
           doorDeps[entities[idx]] = x("properties")("depends").getString();
         } else if (s == "platform") {
           //entities.push_back(Game::getGameInstance()->world->createEntity());
@@ -121,24 +114,16 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
     }
   }
 
-  for (auto& door : doors) {
-    auto& triggerable = door.e.getComponent<Triggerable>();
-    auto jv = JsonValue::fromString(doorDeps[door.e]);
+  for (auto& door : doorDeps) {
+    auto& doorComp = door.first.getComponent<Door>();
+    auto jv = JsonValue::fromString(door.second);
     for (auto& dependency : jv.getArray()) {
-      triggerable.dependecies.insert(triggers[dependency.getInteger()]);
+      doorComp.dependencies.insert(triggers[dependency.getInteger()]);
     }
   }
 }
 
 void LevelManager::initLevel() {
-  for (auto& d : doors) {
-    d.init();
-  }
-
-  //for (auto& p : platforms) {
-  //  p.init();
-  //}
-
   for (auto e : entities) {
     e.activate();
   }

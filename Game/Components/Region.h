@@ -9,20 +9,13 @@ using EntityComponentSystem::Component;
 
 namespace Engine {
 
-class IEnterableCallback {
-public:
-  virtual void onEntityEnter(EntityComponentSystem::Entity e) { }
-  virtual void onEntityLeave(EntityComponentSystem::Entity e) { }
-};
-
 struct Region : Component<Region> {
-  Region(Common::Point topLeftCorner, int16_t height, int16_t width, IEnterableCallback* cb) :
-    topLeftCorner(topLeftCorner), height(height), width(width), callback(cb) {  }
+  Region(Common::Point topLeftCorner, int16_t height, int16_t width) :
+    topLeftCorner(topLeftCorner), height(height), width(width) {  }
 
   Common::Point topLeftCorner;
   size_t height, width;
   std::unordered_set<EntityComponentSystem::Entity> entitiesInRegion; 
-  IEnterableCallback* callback;
 };
 
 }

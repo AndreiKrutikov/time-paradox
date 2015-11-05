@@ -3,8 +3,6 @@
 #include "ResourceManagers.h"
 #include "EntityComponentSystem\World.hpp"
 #include "Utils\JsonValue.h"
-#include "Entities\Door.h"
-#include "Entities\Switch.h"
 #include "Entities\MovingPlatform.h"
 #include <string>
 #include <map>
@@ -33,8 +31,8 @@ struct LevelManager {
 
   Engine::Common::Point start, finish;
 private:
-  std::list<Entities::Door> doors;
-  std::list<Entities::Switch> buttons;
+  //std::list<Entities::Door> doors;
+  //std::list<Entities::Switch> buttons;
 //  std::list<Entities::MovingPlatform> platforms;
   std::vector<EntityComponentSystem::Entity> entities;
   

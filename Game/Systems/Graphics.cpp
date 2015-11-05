@@ -10,7 +10,7 @@
 
 const float Engine::Graphics::TILESIZE = 32;
 
-Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<Drawable>().requiresOneOf<GamePosition, Movable, Motorial>()), window(window) {
+Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<Drawable>().requiresOneOf<GamePosition, Movable/*, Motorial*/>()), window(window) {
 }
 
 void Engine::Graphics::initialize() {
@@ -47,10 +47,10 @@ void Engine::Graphics::update() {
       point = pos.position;
     }
 
-    if (e.hasComponent <Motorial> ()) {
-      auto& pos = e.getComponent<Motorial>();
-      point = pos.currentPosition;
-    }
+    //if (e.hasComponent <Motorial> ()) {
+    //  auto& pos = e.getComponent<Motorial>();
+    //  point = pos.currentPosition;
+    //}
 
     auto& drawable = e.getComponent<Drawable>();
     drawable.sprite.setPosition(sf::Vector2f{ point.x * TILESIZE, point.y * TILESIZE });

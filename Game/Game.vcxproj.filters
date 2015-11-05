@@ -33,12 +33,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InGameCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EntityComponentSystem\ComponentFilter.cpp">
       <Filter>EntitySystem\Source Files</Filter>
     </ClCompile>
@@ -65,15 +59,6 @@
     </ClCompile>
     <ClCompile Include="Systems\Graphics.cpp">
       <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="CloneObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entities\Door.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entities\Switch.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Systems\RegionSystem.cpp">
       <Filter>Source Files</Filter>
@@ -111,14 +96,17 @@
     <ClCompile Include="Systems\MotorialSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Systems\TriggerSystem.cpp">
+    <ClCompile Include="Systems\ButtonSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\DoorSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\PlatformSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InGameCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -179,20 +167,8 @@
     <ClInclude Include="TimeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entities\Door.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entities\Switch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Triggerable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\RegionSystem.h">
       <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="CloneObject.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Acts.h">
       <Filter>Header Files</Filter>
@@ -233,7 +209,22 @@
     <ClInclude Include="Components\PlayerControllable.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\TriggerSystem.h">
+    <ClInclude Include="Components\Button.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Door.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Platform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\ButtonSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\DoorSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\PlatformSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>

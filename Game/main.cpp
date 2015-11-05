@@ -7,8 +7,8 @@
 #include "Game.h"
 #include "Systems\EventDispatcher.h"
 #include "Systems\RegionSystem.h"
-#include "Systems\MotorialSystem.h"
-#include "Systems\TriggerSystem.h"
+#include "Systems\ButtonSystem.h"
+#include "Systems\DoorSystem.h"
 #include "TimeManager.h"
 #include "Player.h"
 #include <iostream>
@@ -47,24 +47,20 @@ int main() {
   Graphics graphicsSystem(window);
   game.graphics = &graphicsSystem;
   EventDispatcher ed(window);
+  Engine::DoorSystem doorSystem;
+  Engine::ButtonSystem buttonSystem;
   
 
   w.addSystem(graphicsSystem);
   w.addSystem(ed);
-
-  sf::CircleShape shape(100.f);
-  shape.setFillColor(sf::Color::Green);
-
-  Engine::MotorialSystem ms;
-  w.addSystem(ms);
+  w.addSystem(doorSystem);
+  w.addSystem(buttonSystem);
 
   Game::Player p(w.createEntity());
   game.player = &p;
   p.e.getComponent<Movable>().position = levelManager.start;
   p.e.addComponent<Drawable>(t, sf::IntRect(0, 0, 32, 32));
  
-  Engine::TriggerSystem ts;
-  w.addSystem(ts);
 
   Game::TimeManager tm_(w.createEntity());
   game.timeManager = &tm_;
@@ -73,13 +69,9 @@ int main() {
   while (window.isOpen()) {    
     tm_.update();
     w.refresh();
-
-    if (!tm_.isOutatime()) {
-      regSys.update();
-      ts.update();
-      //ms.update();
-    }
-
+    regSys.update();
+    buttonSystem.update();
+    doorSystem.update();
     ed.update();
     graphicsSystem.update();
   }
