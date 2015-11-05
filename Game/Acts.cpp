@@ -63,7 +63,7 @@ void Game::MoveAct::unexecute() {
   }
 
   if (Game::getGameInstance()->accessabilityMap->isOccupied(newPosition))
-    std::cout << "Bad" << std::endl;
+    Game::getGameInstance()->state = Game::failed;
   else
     Game::getGameInstance()->accessabilityMap->setOccupied(newPosition);
   entity.getComponent<Engine::Movable>().position = newPosition;

@@ -26,9 +26,17 @@ void Engine::Graphics::initialize() {
   ppSprite.setTexture(rt.getTexture());
   ppShader.loadFromFile("glow.frag", sf::Shader::Fragment);
   ppShader.setParameter("texture", sf::Shader::CurrentTexture);
+
+  winImg.loadFromFile("win.png");
+  failImg.loadFromFile("fail.png");
+
 }
 
 void Engine::Graphics::update() {
+
+
+
+
   rt.clear();
   updateCam();
   rt.setView(camera);
@@ -78,6 +86,21 @@ void Engine::Graphics::update() {
   for (auto& t : texts) {
     window.draw(t);
   }
+
+
+  
+  if (Game::Game::getGameInstance()->state == Game::Game::failed) {
+    sf::Sprite failImg_(failImg);
+    window.draw(failImg_);
+  }
+
+  if (Game::Game::getGameInstance()->state == Game::Game::win) {
+    sf::Sprite winImg_(winImg);
+    window.draw(winImg_);
+  }
+
+
+
 
   texts.clear();
 

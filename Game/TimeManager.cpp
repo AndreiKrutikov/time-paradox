@@ -116,7 +116,7 @@ void Game::TimeManager::addAndExecuteAct(std::unique_ptr<Act> act) {
       firstUnexecutedAct = timeline.insert(firstUnexecutedAct, std::move(act));
       firstUnexecutedAct++;
     } else
-      std::cout << "Bad!" << std::endl;
+      Game::getGameInstance()->state = Game::failed;
   }
 }
 

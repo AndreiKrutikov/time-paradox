@@ -28,7 +28,7 @@ int main() {
   sf::Texture t;
   sf::RenderWindow window(sf::VideoMode(1920, 1080), "Wait, OH SHI~~~");
   sf::Image im;
-  bool s = im.loadFromFile("maps\\denis\\robot.png");
+  bool s = im.loadFromFile("kuzrobot.png");
   s = t.loadFromImage(im);
   std::cout << s;
 
@@ -71,12 +71,19 @@ int main() {
   tm_.checkPoint();
   while (window.isOpen()) {    
     if (!tm_.update())
-      std::cout << "Bad" << std::endl;
+      Game::Game::getGameInstance()->state = Game::Game::failed;
     w.refresh();
     ms.update();
     graphicsSystem.update();
     ed.update();
     regSys.update(tm_.isOutatime());
+
+    auto plpos = p.e.getComponent<Movable>().position;
+    if (plpos.x == levelManager.finish.x && plpos.y == levelManager.finish.y) {
+      game.state = Game::Game::win;
+    }
+
+
   }
 
   return 0;

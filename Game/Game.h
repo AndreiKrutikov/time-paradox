@@ -30,6 +30,12 @@ struct Game {
   Engine::ResourceManagers* resourceManager;
 
   static Game* getGameInstance();
+
+  enum State {
+    running,
+    failed,
+    win
+  } state;
 };
 
 }

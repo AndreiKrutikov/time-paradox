@@ -33,6 +33,11 @@ private:
 
   sf::View camera;
   EntityComponentSystem::Entity e;
+  sf::Texture winImg;
+  sf::Texture failImg;
+
+
+
   sf::RenderTexture rt;
   sf::Sprite ppSprite; 
   sf::Shader ppShader;
@@ -41,3 +46,4 @@ private:
 };
 
 }
+
