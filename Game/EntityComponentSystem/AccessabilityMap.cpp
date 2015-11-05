@@ -23,6 +23,8 @@ void AccessabilityMap::createMap(uint16_t height, uint16_t width) {
 void AccessabilityMap::clear() {
   delete[] map_;
   delete[] data_;
+  map_ = nullptr;
+  data_ = nullptr;
 }
 
 void AccessabilityMap::setFree(Engine::Common::Point point) {

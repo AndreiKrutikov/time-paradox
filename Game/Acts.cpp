@@ -131,7 +131,8 @@ bool Game::SpawnAct::execute() {
 
 void Game::SpawnAct::unexecute() {
   std::cout << "Game::SpawnAct::unexecute() " << entity.getId() << std::endl;
-  
+  auto& map = Game::getGameInstance()->accessabilityMap;
+  map->setFree(entity.getComponent<Engine::Movable>().position);
   entity.deactivate();
 }
 

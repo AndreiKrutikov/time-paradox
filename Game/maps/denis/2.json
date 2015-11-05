@@ -12,19 +12,22 @@
          "y":0
         }, 
         {
+         "draworder":"topdown",
          "height":15,
          "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
          "objects":[
                 {
                  "height":29,
+                 "id":1,
                  "name":"door_1",
                  "properties":
                     {
                      "arr_pos":"31",
-                     "button_id":"button_1",
+                     "triggerable_id":"1",
                      "is_locked":"0",
                      "paired_tile":"59"
                     },
+                 "rotation":0,
                  "type":"door",
                  "visible":true,
                  "width":30,
@@ -33,14 +36,17 @@
                 }, 
                 {
                  "height":29,
+                 "id":4,
                  "name":"door_2",
                  "properties":
                     {
                      "arr_pos":"67",
-                     "button_id":"button_1",
+                     
+                     "triggerable_id":"2",
                      "is_locked":"1",
                      "paired_tile":"21"
                     },
+                 "rotation":0,
                  "type":"door",
                  "visible":true,
                  "width":30,
@@ -49,11 +55,13 @@
                 }, 
                 {
                  "height":31,
+                 "id":6,
                  "name":"exit",
                  "properties":
                     {
-                     "arr_pos":"4"
+                        "arr_pos":"4"
                     },
+                 "rotation":0,
                  "type":"exit",
                  "visible":true,
                  "width":33,
@@ -62,13 +70,15 @@
                 }, 
                 {
                  "height":30,
+                 "id":7,
                  "name":"button_1",
                  "properties":
                     {
                      "arr_pos":"94",
-                     "doors":"door_1 door_2",
+                     "switches":"[1,2]",
                      "is_on":"0"
                     },
+                 "rotation":0,
                  "type":"button",
                  "visible":true,
                  "width":30,
@@ -77,11 +87,13 @@
                 }, 
                 {
                  "height":31,
+                 "id":8,
                  "name":"enter",
                  "properties":
                     {
-                     "arr_pos":"130"
+                        "arr_pos":"130"
                     },
+                 "rotation":0,
                  "type":"enter",
                  "visible":true,
                  "width":31,
@@ -95,11 +107,13 @@
          "x":0,
          "y":0
         }],
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "properties":
     {
 
     },
+ "renderorder":"right-down",
  "tileheight":32,
  "tilesets":[
         {
@@ -114,6 +128,7 @@
 
             },
          "spacing":0,
+         "tilecount":84,
          "tileheight":32,
          "tileproperties":
             {
@@ -136,6 +151,7 @@
 
             },
          "spacing":0,
+         "tilecount":1,
          "tileheight":32,
          "tileproperties":
             {
