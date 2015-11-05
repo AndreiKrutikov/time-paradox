@@ -12,18 +12,21 @@
          "y":0
         }, 
         {
+         "draworder":"topdown",
          "height":9,
          "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
          "objects":[
                 {
                  "height":29,
+                 "id":1,
                  "name":"button_1",
                  "properties":
                     {
-                     "arr_pos":"58",
-                     "doors":"door_1",
+                     "arr_pos": "58",
+                     "switches":"[1]",
                      "is_on":"0"
                     },
+                 "rotation":0,
                  "type":"button",
                  "visible":true,
                  "width":28,
@@ -32,14 +35,16 @@
                 }, 
                 {
                  "height":29,
+                 "id":2,
                  "name":"door_1",
                  "properties":
                     {
-                     "arr_pos":"31",
-                     "button_id":"button_1",
+                     "arr_pos": "31",
+                     "triggerable_id":"1",
                      "is_locked":"1",
                      "paired_tile":"21"
                     },
+                 "rotation":0,
                  "type":"door",
                  "visible":true,
                  "width":30,
@@ -48,11 +53,13 @@
                 }, 
                 {
                  "height":31,
+                 "id":3,
                  "name":"exit",
                  "properties":
                     {
-                     "arr_pos":"4"
+                        "arr_pos": "4"
                     },
+                 "rotation":0,
                  "type":"exit",
                  "visible":true,
                  "width":32,
@@ -61,11 +68,13 @@
                 }, 
                 {
                  "height":32,
+                 "id":5,
                  "name":"enter",
                  "properties":
                     {
-                     "arr_pos":"76"
+                        "arr_pos": "76"
                     },
+                 "rotation":0,
                  "type":"enter",
                  "visible":true,
                  "width":32,
@@ -79,11 +88,13 @@
          "x":0,
          "y":0
         }],
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "properties":
     {
 
     },
+ "renderorder":"right-down",
  "tileheight":32,
  "tilesets":[
         {
@@ -98,6 +109,7 @@
 
             },
          "spacing":0,
+         "tilecount":84,
          "tileheight":32,
          "tileproperties":
             {
@@ -124,6 +136,7 @@
 
             },
          "spacing":0,
+         "tilecount":1,
          "tileheight":32,
          "tileproperties":
             {
@@ -146,6 +159,7 @@
 
             },
          "spacing":0,
+         "tilecount":1,
          "tileheight":32,
          "tilewidth":32
         }],
