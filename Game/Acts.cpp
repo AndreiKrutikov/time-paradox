@@ -1,5 +1,6 @@
 #include "Acts.h"
 #include "Components\Movable.h"
+#include "Components\PlayerControlable.h"
 #include <EntityComponentSystem\Entity.hpp>
 #include "EntityComponentSystem\AccessabilityMap.h"
 #include "Game.h"
@@ -33,8 +34,12 @@ bool Game::MoveAct::execute() {
     movable.position = newPosition;
     map->setOccupied(newPosition);
     return true;
-  } else
-    return false;
+  } else {
+    if (entity.hasComponent<Engine::PlayerControlable>())
+      return true;
+    else
+      return false;
+  }
 }
 
 void Game::MoveAct::unexecute() {
@@ -126,6 +131,7 @@ bool Game::SpawnAct::execute() {
 
 void Game::SpawnAct::unexecute() {
   std::cout << "Game::SpawnAct::unexecute() " << entity.getId() << std::endl;
+  
   entity.deactivate();
 }
 
