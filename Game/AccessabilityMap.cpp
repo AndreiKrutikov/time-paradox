@@ -1,8 +1,9 @@
 #include "AccessabilityMap.h"
 
-namespace EntityComponentSystem {
+namespace Engine {
 
-AccessabilityMap::AccessabilityMap():map_(nullptr), data_(nullptr) {}
+AccessabilityMap::AccessabilityMap() :map_(nullptr), data_(nullptr) {
+}
 
 void AccessabilityMap::createMap(uint16_t height, uint16_t width) {
   this->height = height;

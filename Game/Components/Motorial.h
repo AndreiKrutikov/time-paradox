@@ -1,8 +1,7 @@
 #pragma once
-
+#include <chrono>
 #include <EntityComponentSystem/Component.hpp>
 #include "Common.h"
-#include <chrono>
 
 using EntityComponentSystem::Component;
 

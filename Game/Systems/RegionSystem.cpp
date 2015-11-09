@@ -1,10 +1,10 @@
 #include "RegionSystem.h"
-#include <map>
 #include <vector>
 #include <EntityComponentSystem/World.hpp>
-#include "Components\PlayerControlable.h"
-#include "TimeManager.h"
+#include "Components/PlayerControlable.h"
 #include "Game.h"
+#include "TimeManager.h"
+
 Engine::RegionSystem::RegionSystem() : System(EntityComponentSystem::ComponentFilter().requiresOneOf <Movable, Region>()) {
 }
 

@@ -1,12 +1,11 @@
 #pragma once
-
-#include "Components\Interactible.h"
-#include <SFML\Graphics\Text.hpp>
-#include "Act.h"
-#include "EntityComponentSystem\AccessabilityMap.h"
 #include <chrono>
 #include <memory>
 #include <list>
+#include <SFML/Graphics/Text.hpp>
+#include "AccessabilityMap.h"
+#include "Act.h"
+#include "Components/Interactible.h"
 
 namespace Game {
 

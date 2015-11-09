@@ -1,12 +1,12 @@
 #include "TimeManager.h"
-#include "Acts.h"
-#include "Player.h"
-#include "Components\Movable.h"
-#include "ResourceManagers.h"
-#include "Systems\Graphics.h"
-#include "Game.h"
 #include <iomanip>
 #include <sstream>
+#include "Acts.h"
+#include "Components/Movable.h"
+#include "Game.h"
+#include "Player.h"
+#include "ResourceManager.h"
+#include "Systems/Graphics.h"
 
 using namespace Engine;
 
@@ -131,7 +131,7 @@ bool Game::TimeManager::update() {
       firstUnexecutedAct++;
     }
   }
-  
+
   if (timeSpeed < 0) {
     for (;;) {
       if (firstUnexecutedAct == timeline.begin()) break;

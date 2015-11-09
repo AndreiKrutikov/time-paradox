@@ -1,5 +1,4 @@
 #include "Switch.h"
-#include <iostream>
 
 using namespace EntityComponentSystem;
 using namespace Engine;

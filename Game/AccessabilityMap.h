@@ -1,6 +1,7 @@
 #pragma once
-#include "common.h"
-namespace EntityComponentSystem {
+#include "Common.h"
+
+namespace Engine {
 struct AccessabilityMap {
   AccessabilityMap();
   ~AccessabilityMap();

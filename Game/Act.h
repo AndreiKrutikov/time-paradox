@@ -1,6 +1,6 @@
 #pragma once
 #include <chrono>
-#include <EntityComponentSystem\Entity.hpp>
+#include <EntityComponentSystem/Entity.hpp>
 
 namespace Game {
 

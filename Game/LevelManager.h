@@ -1,14 +1,13 @@
 #pragma once
-#include "EntityComponentSystem\AccessabilityMap.h"
-#include "ResourceManagers.h"
-#include "EntityComponentSystem\World.hpp"
-#include "Utils\JsonValue.h"
-#include "Entities\Door.h"
-#include "Entities\Switch.h"
-#include "Entities\MovingPlatform.h"
-#include <string>
-#include <map>
+#include <list>
 #include <vector>
+#include <EntityComponentSystem/World.hpp>
+#include "AccessabilityMap.h"
+#include "Entities/Door.h"
+#include "Entities/MovingPlatform.h"
+#include "Entities/Switch.h"
+#include "Utils/JsonValue.h"
+#include "ResourceManager.h"
 
 namespace Game {
 
@@ -27,8 +26,8 @@ struct LevelManager {
 
   ~LevelManager();
 
-  EntityComponentSystem::AccessabilityMap accessMap;
-  Engine::ResourceManagers resourceManagers;
+  Engine::AccessabilityMap accessMap;
+  Engine::ResourceManager ResourceManager;
   uint16_t width, height;
 
   Engine::Common::Point start, finish;
@@ -36,12 +35,10 @@ private:
   std::list<Entities::Door> doors;
   std::list<Entities::Switch> buttons;
   std::list<Entities::MovingPlatform> platforms;
-  std::vector<EntityComponentSystem::Entity> entities;
-  
+  std::vector<EntityComponentSystem::Entity> entities;  
 
   void loadTileSet(Engine::Common::JsonValue& tilesetArray, const std::string& path);
   void loadTileLayer(Engine::Common::JsonValue& layer, uint16_t width, EntityComponentSystem::World& w);
-
 };
 
 }

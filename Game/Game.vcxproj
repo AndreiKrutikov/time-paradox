@@ -150,11 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AccessabilityMap.cpp" />
     <ClCompile Include="Acts.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Components\Interactible.cpp" />
     <ClCompile Include="Entities\Door.cpp" />
-    <ClCompile Include="CloneObject.cpp" />
     <ClCompile Include="Entities\Switch.cpp" />
     <ClCompile Include="EntityComponentSystem\ComponentFilter.cpp" />
     <ClCompile Include="EntityComponentSystem\detail\EntityComponentStorage.cpp" />
@@ -162,12 +161,11 @@
     <ClCompile Include="EntityComponentSystem\Entity.cpp" />
     <ClCompile Include="EntityComponentSystem\System.cpp" />
     <ClCompile Include="EntityComponentSystem\World.cpp" />
-    <ClCompile Include="EntityComponentSystem\AccessabilityMap.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Entities\MovingPlatform.cpp" />
-    <ClCompile Include="ResourceManagers.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Systems\EventDispatcher.cpp" />
     <ClCompile Include="Systems\Graphics.cpp" />
@@ -177,10 +175,11 @@
     <ClCompile Include="TimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AccessabilityMap.h" />
     <ClInclude Include="Act.h" />
     <ClInclude Include="Components\PlayerControlable.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Utils\Acts.h" />
-    <ClInclude Include="CloneObject.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Components\Drawable.h" />
     <ClInclude Include="Components\GamePosition.h" />
@@ -200,11 +199,9 @@
     <ClInclude Include="EntityComponentSystem\System.hpp" />
     <ClInclude Include="EntityComponentSystem\TypeLists.hpp" />
     <ClInclude Include="EntityComponentSystem\World.hpp" />
-    <ClInclude Include="EntityComponentSystem\AccessabilityMap.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Entities\MovingPlatform.h" />
-    <ClInclude Include="ResourceManagers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Systems\EventDispatcher.h" />
     <ClInclude Include="Systems\Graphics.h" />

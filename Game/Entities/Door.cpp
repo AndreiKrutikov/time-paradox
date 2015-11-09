@@ -1,6 +1,6 @@
 #include "Door.h"
-#include "Components\Drawable.h"
-#include "..\Game.h"
+#include "Components/Drawable.h"
+#include "../Game.h"
 
 using namespace EntityComponentSystem;
 using namespace Game::Entities;

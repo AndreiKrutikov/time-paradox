@@ -1,9 +1,8 @@
 #pragma once
-
 #include "Common.h"
-#include <EntityComponentSystem\World.hpp>
-#include "Components\Triggerable.h"
-#include "Components\Region.h"
+#include <EntityComponentSystem/World.hpp>
+#include "Components/Region.h"
+#include "Components/Triggerable.h"
 
 namespace Game { namespace Entities {
 

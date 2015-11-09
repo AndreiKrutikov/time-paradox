@@ -1,10 +1,10 @@
 #pragma once
-#include <EntityComponentSystem\World.hpp>
-#include "EntityComponentSystem\AccessabilityMap.h"
-#include "Components\Triggerable.h"
-#include "Components\GamePosition.h"
-#include <SFML\Graphics\Texture.hpp>
-#include <SFML\Graphics\Sprite.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <EntityComponentSystem/World.hpp>
+#include "AccessabilityMap.h"
+#include "Components/GamePosition.h"
+#include "Components/Triggerable.h"
 
 namespace Game { namespace Entities {
 

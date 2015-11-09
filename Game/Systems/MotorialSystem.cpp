@@ -2,9 +2,9 @@
 #include "../EntityComponentSystem/World.hpp"
 #include "../Game.h"
 #include "../TimeManager.h"
-Engine::MotorialSystem::MotorialSystem() : System(EntityComponentSystem::ComponentFilter().requires <Movable, Motorial>()) { } 
 
-#include <iostream>
+Engine::MotorialSystem::MotorialSystem() : System(EntityComponentSystem::ComponentFilter().requires <Movable, Motorial>()) {
+}
 
 void Engine::MotorialSystem::update() {
   if (Game::Game::getGameInstance()->timeManager->isOutatime()) return;
@@ -18,8 +18,8 @@ void Engine::MotorialSystem::update() {
       auto& position = e.getComponent<Movable>().position;
       motorial.lastShiftTime = Game::Game::getGameInstance()->timeManager->getGameTime();
 
-      if ((position.x == motorial.endPosition.x && position.y == motorial.endPosition.y) ) {
-      switch (motorial.direction) {
+      if ((position.x == motorial.endPosition.x && position.y == motorial.endPosition.y)) {
+        switch (motorial.direction) {
         case Common::Direction::Up:
           motorial.direction = Common::Direction::Down;
           break;
@@ -35,15 +35,9 @@ void Engine::MotorialSystem::update() {
         }
       }
 
-     // motorial.isActive = false;
-      //check if we returned back and should stop now
+      // motorial.isActive = false;
+       //check if we returned back and should stop now
       if (position.x == motorial.startPosition.x && position.y == motorial.startPosition.y) {
-        std::cout << "WTF1 " << e.getId() << " " << position.x << " " << position.y << " " << std::endl;
-        std::cout << "WTF2 " << e.getId() << " " << motorial.endPosition.x << " " << motorial.endPosition.y << " " << std::endl;
-        std::cout << "WTF3 " << e.getId() << " " << motorial.startPosition.x << " " << motorial.startPosition.y << " " << std::endl;
-        std::cout << std::endl;
-
-
         motorial.isActive = false;
         switch (motorial.direction) {
         case Common::Direction::Up:

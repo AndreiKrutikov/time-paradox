@@ -1,6 +1,6 @@
 #pragma once
-#include <EntityComponentSystem/System.hpp>
 #include <SFML/Window.hpp>
+#include <EntityComponentSystem/System.hpp>
 #include "../Components/Interactible.h"
 
 namespace Engine {

@@ -1,8 +1,7 @@
 #pragma once
-
-#include "Common.h"
-#include "EntityComponentSystem\Entity.hpp"
 #include <EntityComponentSystem/Component.hpp>
+#include <EntityComponentSystem/Entity.hpp>
+#include "Common.h"
 
 using EntityComponentSystem::Component;
 

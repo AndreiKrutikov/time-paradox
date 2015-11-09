@@ -2,7 +2,6 @@
 
 namespace EntityComponentSystem {
 
-struct AccessabilityMap;
 class World;
 
 }
@@ -10,7 +9,8 @@ class World;
 namespace Engine {
 
 class Graphics;
-class ResourceManagers;
+class ResourceManager;
+struct AccessabilityMap;
 
 }
 
@@ -25,9 +25,9 @@ struct Game {
   TimeManager* timeManager;
   LevelManager* levelManager;
   Engine::Graphics* graphics;
-  EntityComponentSystem::AccessabilityMap* accessabilityMap;
+  Engine::AccessabilityMap* accessabilityMap;
   EntityComponentSystem::World* world;
-  Engine::ResourceManagers* resourceManager;
+  Engine::ResourceManager* resourceManager;
 
   static Game* getGameInstance();
 

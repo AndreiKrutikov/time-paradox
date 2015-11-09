@@ -1,6 +1,6 @@
 #pragma once
-#include <EntityComponentSystem\Entity.hpp>
-#include "Components\Interactible.h"
+#include <EntityComponentSystem/Entity.hpp>
+#include "Components/Interactible.h"
 
 namespace Game {
 

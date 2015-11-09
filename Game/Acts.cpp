@@ -1,12 +1,12 @@
 #include "Acts.h"
-#include "Components\Movable.h"
-#include "Components\PlayerControlable.h"
-#include <EntityComponentSystem\Entity.hpp>
-#include "EntityComponentSystem\AccessabilityMap.h"
-#include "Game.h"
-using namespace EntityComponentSystem;
-
 #include <iostream>
+#include <EntityComponentSystem/Entity.hpp>
+#include "AccessabilityMap.h"
+#include "Components/Movable.h"
+#include "Components/PlayerControlable.h"
+#include "Game.h"
+
+using namespace EntityComponentSystem;
 
 bool Game::MoveAct::execute() {
   using namespace Engine::Common;
@@ -16,16 +16,16 @@ bool Game::MoveAct::execute() {
   map->setFree(newPosition);
 
   switch (direction) {
-  case Direction::Up :
+  case Direction::Up:
     newPosition.y--;
     break;
-  case Direction::Down :
+  case Direction::Down:
     newPosition.y++;
     break;
-  case Direction::Left :
+  case Direction::Left:
     newPosition.x--;
     break;
-  case Direction::Right :
+  case Direction::Right:
     newPosition.x++;
     break;
   }

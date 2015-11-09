@@ -1,10 +1,9 @@
 #pragma once
-#include <EntityComponentSystem/System.hpp>
 #include <SFML/Graphics.hpp>
+#include <EntityComponentSystem/System.hpp>
 #include "../Components/Drawable.h"
 #include "../Components/GamePosition.h"
 #include "../Components/Interactible.h"
-#include <iostream>
 
 namespace Game {
   class TimeManager;
@@ -35,8 +34,6 @@ private:
   EntityComponentSystem::Entity e;
   sf::Texture winImg;
   sf::Texture failImg;
-
-
 
   sf::RenderTexture rt;
   sf::Sprite ppSprite; 

@@ -1,9 +1,9 @@
 #include "MovingPlatform.h"
-#include "Components\Movable.h"
-#include "EntityComponentSystem\World.hpp"
-#include "..\Game.h"
-#include "../TimeManager.h"
+#include <EntityComponentSystem/World.hpp>
+#include "Components/Movable.h"
 #include "../Acts.h"
+#include "../Game.h"
+#include "../TimeManager.h"
 
 using namespace Game::Entities;
 using namespace Engine;

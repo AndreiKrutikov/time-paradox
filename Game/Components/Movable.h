@@ -1,8 +1,7 @@
 #pragma once
-
-#include "Common.h"
+#include <SFML/Window/Event.hpp>
 #include <EntityComponentSystem/Component.hpp>
-#include <SFML\Window\Event.hpp>
+#include "Common.h"
 
 using EntityComponentSystem::Component;
 

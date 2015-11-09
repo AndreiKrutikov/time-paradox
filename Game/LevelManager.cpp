@@ -2,19 +2,15 @@
 #include <string>
 #include <fstream>
 #include <streambuf>
-#include <vector>
-#include <map>
-#include "Utils\JsonValue.h"
-#include <iostream>
 #include "Common.h"
-#include "Components\GamePosition.h"
-#include "Components\Drawable.h"
-#include "Entities\Door.h"
-#include "Entities\Switch.h"
+#include "Components/Drawable.h"
+#include "Components/GamePosition.h"
+#include "Components/Motorial.h"
+#include "Components/Movable.h"
+#include "Components/Region.h"
+#include "Entities/Door.h"
+#include "Entities/Switch.h"
 #include "Game.h"
-#include "Components\Motorial.h"
-#include "Components\Region.h"
-#include "Components\Movable.h"
 
 using namespace EntityComponentSystem;
 using namespace Game;
@@ -23,9 +19,9 @@ using namespace Engine::Common;
 LevelManager::LevelManager() {
 }
 
-void LevelManager::loadLevel(const std::string path, const std::string& levelfile, EntityComponentSystem::World& w){
+void LevelManager::loadLevel(const std::string path, const std::string& levelfile, EntityComponentSystem::World& w) {
   clear();
-  std::ifstream t(path+levelfile);
+  std::ifstream t(path + levelfile);
   std::string jsonString((std::istreambuf_iterator<char>(t)), std::istreambuf_iterator<char>());
   auto& jsonData = JsonValue::fromString(jsonString);
 
@@ -46,7 +42,7 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
       loadTileLayer(layer, width, w);
       data = layer("data");
       break;
-    } 
+    }
   }
 
   //then load objects
@@ -70,14 +66,14 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
         } else if (s == "button") {
           switches.push_back(x);
         } else if (s == "door") {
-          
+
           bool isClosed = (x("properties"))("is_locked").getString() == "1";
           uint16_t altidx = static_cast<uint16_t>(std::stoi((x("properties"))("paired_tile").getString()));
           uint16_t textureId = static_cast<uint16_t>(data.getArray()[idx].getInteger());
           //uint16_t alternativeTextureId = static_cast<uint16_t>(data.getArray()[altidx].getInteger());
 
-          sf::Sprite alterSprite(resourceManagers.getTileTexture(altidx), resourceManagers.getTileRectangle(altidx));
-          
+          sf::Sprite alterSprite(ResourceManager.getTileTexture(altidx), ResourceManager.getTileRectangle(altidx));
+
           doors.emplace_back(entities[idx], !isClosed, alterSprite);
           triggerables[std::stoul((x("properties"))("triggerable_id").getString())] = entities[idx];
         } else if (s == "platform") {
@@ -85,7 +81,7 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
           platforms.emplace_back(entities.back());
           entities.back().addComponent<Engine::Movable>(pos);
           uint16_t tileId = static_cast<uint16_t>(std::stoi((x("properties"))("tile_id").getString()));
-          entities.back().addComponent<Engine::Drawable>(resourceManagers.getTileTexture(tileId), resourceManagers.getTileRectangle(tileId));
+          entities.back().addComponent<Engine::Drawable>(ResourceManager.getTileTexture(tileId), ResourceManager.getTileRectangle(tileId));
           entities.back().addComponent<Engine::Triggerable>(&platforms.back());
           entities.back().addComponent<Engine::Region>(pos, int16_t(0), int16_t(0), &platforms.back());
           auto str = x("properties")("bounds").getString();
@@ -146,10 +142,10 @@ void LevelManager::loadTileLayer(JsonValue& layer, uint16_t width, EntityCompone
   for (uint16_t i = 0; i < data.size(); i++) {
     entities[i].addComponent<Engine::GamePosition>(Point{ i % width, i / width });
     uint16_t tileTypeId = static_cast<uint16_t>(data[i].getInteger());
-    entities[i].addComponent<Engine::Drawable>(resourceManagers.getTileTexture(tileTypeId), resourceManagers.getTileRectangle(tileTypeId));
+    entities[i].addComponent<Engine::Drawable>(ResourceManager.getTileTexture(tileTypeId), ResourceManager.getTileRectangle(tileTypeId));
     entities[i].activate();
 
-    if (resourceManagers.isWallType(tileTypeId)) {
+    if (ResourceManager.isWallType(tileTypeId)) {
       accessMap.setOccupied(Point{ i % width, i / width });
     }
   }
@@ -158,20 +154,20 @@ void LevelManager::loadTileLayer(JsonValue& layer, uint16_t width, EntityCompone
 void LevelManager::loadTileSet(JsonValue& tilesetArray, const std::string& path) {
   for (auto& tileset : tilesetArray.getArray()) {
     std::string imagefile = path + tileset("image").getString();
-    uint16_t firstgid =  static_cast<uint16_t>(tileset("firstgid").getInteger());
+    uint16_t firstgid = static_cast<uint16_t>(tileset("firstgid").getInteger());
     uint16_t tilecount = static_cast<uint16_t>(tileset("tilecount").getInteger());
 
     uint16_t tileXside = static_cast<uint16_t>(tileset("tileheight").getInteger());
     uint16_t tileYside = static_cast<uint16_t>(tileset("tilewidth").getInteger());
 
     uint16_t  imgWidth = static_cast<uint16_t>(tileset("imagewidth").getInteger());
-    resourceManagers.loadTileSet(imagefile, firstgid, tilecount, imgWidth, tileXside, tileYside);
+    ResourceManager.loadTileSet(imagefile, firstgid, tilecount, imgWidth, tileXside, tileYside);
 
     if (tileset.contains("tileproperties")) {
       auto& props = tileset("tileproperties").getObject();
-      for(auto& property : props) {
+      for (auto& property : props) {
         if (property.second.contains("get_through") && property.second("get_through").getString() == "0") {
-          resourceManagers.setTypeToWall(firstgid + std::stoi(property.first));
+          ResourceManager.setTypeToWall(firstgid + std::stoi(property.first));
         }
       }
     }

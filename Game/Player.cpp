@@ -1,11 +1,11 @@
 #include "Player.h"
-#include "Components\Movable.h"
-#include "Components\Drawable.h"
-#include "Components\PlayerControlable.h"
+#include <EntityComponentSystem/World.hpp>
 #include "Acts.h"
-#include "TimeManager.h"
+#include "Components/Movable.h"
+#include "Components/Drawable.h"
+#include "Components/PlayerControlable.h"
 #include "Game.h"
-#include <EntityComponentSystem\World.hpp>
+#include "TimeManager.h"
 
 using namespace EntityComponentSystem;
 using namespace Engine;

@@ -2,10 +2,10 @@
 #include <EntityComponentSystem/World.hpp>
 #include "EventDispatcher.h"
 #include "../Components/Movable.h"
-#include "../TimeManager.h"
 #include "../Game.h"
-#include "../Player.h"
 #include "../LevelManager.h"
+#include "../Player.h"
+#include "../TimeManager.h"
 
 const float Engine::Graphics::TILESIZE = 32;
 
@@ -33,10 +33,6 @@ void Engine::Graphics::initialize() {
 }
 
 void Engine::Graphics::update() {
-
-
-
-
   rt.clear();
   updateCam();
   rt.setView(camera);

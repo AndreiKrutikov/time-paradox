@@ -1,7 +1,8 @@
 #pragma once
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 #include <EntityComponentSystem/Component.hpp>
-#include <SFML\Graphics\Texture.hpp>
-#include <SFML\Graphics\Sprite.hpp>
+
 using EntityComponentSystem::Component;
 
 namespace Engine {

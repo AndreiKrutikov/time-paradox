@@ -1,18 +1,17 @@
 #include <SFML/Graphics.hpp>
-#include "Systems\Graphics.h"
-#include <EntityComponentSystem\World.hpp>
-#include "LevelManager.h"
-#include "Components\Interactible.h"
-#include "Components\Movable.h"
+#include <EntityComponentSystem/World.hpp>
+#include "Components/Interactible.h"
+#include "Components/Movable.h"
 #include "Game.h"
-#include "Systems\EventDispatcher.h"
-#include "Systems\RegionSystem.h"
-#include "Systems\MotorialSystem.h"
-#include "TimeManager.h"
+#include "LevelManager.h"
 #include "Player.h"
+#include "Systems/EventDispatcher.h"
+#include "Systems/Graphics.h"
+#include "Systems/MotorialSystem.h"
+#include "Systems/RegionSystem.h"
+#include "TimeManager.h"
 #include <iostream>
 #include <fstream>
-
 
 using namespace EntityComponentSystem;
 using namespace Engine;
@@ -22,42 +21,35 @@ extern Game::Game* gameInstance;
 int main() {
   Game::Game game;
   gameInstance = &game;
-  
-
   sf::Font font;
   bool f = font.loadFromFile("unispace rg.ttf");
-
-
   sf::Texture t;
-  sf::RenderWindow window(sf::VideoMode(1024, 768), "Wait, OH SHI~~~");
+  sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+  sf::RenderWindow window(sf::VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel), "Wait, OH SHI~~~");
   sf::Image im;
   bool s = im.loadFromFile("maps//robot.png");
   s = t.loadFromImage(im);
-
   sf::Texture t2;
-  t2.loadFromFile("kuzrobot.png");
-  
+  t2.loadFromFile("maps//robot.png");
   std::vector<sf::Text> levels;
   std::ifstream file("Levels.config");
   uint16_t margin = 10;
   std::string str;
   while (std::getline(file, str)) {
-    //text.move(0, (text.getCharacterSize() + margin)*levels.size());
-
     levels.emplace_back();
 
-    levels.back().setColor(sf::Color(200, 200, 200)); 
+    levels.back().setColor(sf::Color(200, 200, 200));
     levels.back().setString(str);
     levels.back().setFont(font);
     levels.back().move(0, (levels.size() - 1) * (levels.back().getLocalBounds().height + margin));
   }
   levels[0].setStyle(sf::Text::Style::Bold || sf::Text::Style::Underlined);
   levels[0].setColor(sf::Color::White);
+  int16_t levelidx = 0;
   while (window.isOpen()) {
 
 
     sf::Event event;
-    int16_t levelidx = 0;
     while (window.isOpen()) {
       bool endCycle = false;
       while (window.pollEvent(event)) {
@@ -108,9 +100,10 @@ int main() {
     std::string  curlevel = levels[levelidx].getString() + ".json";
     World w;
     game.world = &w;
+    game.state = Game::Game::running;
     Game::LevelManager levelManager;
     game.levelManager = &levelManager;
-    game.resourceManager = &levelManager.resourceManagers;
+    game.resourceManager = &levelManager.ResourceManager;
 
     RegionSystem regSys;
     w.addSystem(regSys);
@@ -143,7 +136,7 @@ int main() {
     game.timeManager = &tm_;
     w.refresh();
     tm_.checkPoint();
-    while (window.isOpen()) {      
+    while (window.isOpen()) {
       if (!tm_.update())
         Game::Game::getGameInstance()->state = Game::Game::failed;
       w.refresh();

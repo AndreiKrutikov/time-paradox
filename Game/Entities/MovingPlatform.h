@@ -1,8 +1,8 @@
 #pragma once
-#include "Components\Motorial.h"
-#include "Components\Region.h"
+#include "Components/Motorial.h"
+#include "Components/Region.h"
 #include "../Components/Triggerable.h"
-#include "EntityComponentSystem\Entity.hpp"
+#include "EntityComponentSystem/Entity.hpp"
 #include <set>
 
 namespace Game {
