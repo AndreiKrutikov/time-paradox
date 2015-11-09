@@ -12,13 +12,13 @@ namespace Engine {
 struct Platform : Component<Platform> {
   Platform(float velocity, Engine::Common::Point start, Engine::Common::Point finish, Engine::Common::Point current,
            Engine::Common::Direction dir) : velocity(velocity),
-    startPosition(start), endPosition(finish), currentPosition(current), direction(dir), isActive(false), isAccesible(true) {
+    startPosition(start), endPosition(finish), currentPosition(current), direction(dir), isActive(false) {
   }
 
   bool isActive;
-  bool isAccesible;
   float velocity;
   std::chrono::time_point<std::chrono::high_resolution_clock> lastShiftTime;
+  std::chrono::time_point<std::chrono::high_resolution_clock> futureUndefinedSince;
   Engine::Common::Point startPosition, currentPosition, endPosition;
   Engine::Common::Direction direction;
   std::unordered_set<EntityComponentSystem::Entity> dependencies;

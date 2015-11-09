@@ -111,8 +111,8 @@ int64_t Game::TimeManager::getTimeMultiplier() const {
 
 void Game::TimeManager::addAndExecuteAct(std::unique_ptr<Act> act) {
   if (!outatime) {
+    act->timestamp = getGameTime();
     if (act->execute()) {
-      act->timestamp = getGameTime();
       firstUnexecutedAct = timeline.insert(firstUnexecutedAct, std::move(act));
       firstUnexecutedAct++;
     }

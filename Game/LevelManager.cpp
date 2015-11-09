@@ -12,10 +12,10 @@
 #include "Components\Drawable.h"
 #include "Components\Door.h"
 #include "Components\Button.h"
-#include "Game.h"
-#include "Components\Motorial.h"
 #include "Components\Region.h"
 #include "Components\Movable.h"
+#include "Components\Platform.h"
+#include "Game.h"
 
 
 using namespace EntityComponentSystem;
@@ -57,8 +57,8 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
   //we need to create switched after all other objects 
   std::vector<JsonValue> switches;
   std::map<size_t, Entity> triggers;
-  std::unordered_map<Entity, std::string> doorDeps;
-  
+  std::unordered_map<Entity, std::string> doorDeps;  
+  std::unordered_map<Entity, std::string> platformDeps;
 
   for (auto& layer : jsonData("layers").getArray()) {
     std::string s = layer("type").getString();
@@ -84,6 +84,28 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
           entities[idx].addComponent<Door>(!isClosed, alterSprite);
           doorDeps[entities[idx]] = x("properties")("depends").getString();
         } else if (s == "platform") {
+          entities.push_back(Game::getGameInstance()->world->createEntity());
+          uint16_t tileId = static_cast<uint16_t>(std::stoi((x("properties"))("tile_id").getString()));
+          entities.back().addComponent<Engine::Drawable>(resourceManagers.getTileTexture(tileId), resourceManagers.getTileRectangle(tileId));
+          entities.back().addComponent<Engine::Region>(pos, int16_t(1), int16_t(1));
+          auto arr = (JsonValue::fromString(x("properties")("bounds").getString())).getArray();
+          Engine::Common::Direction d;
+          auto dirStr = x("properties")("direction").getString();
+          if (dirStr == "left") d = Engine::Common::Direction::Left;
+          if (dirStr == "up") d = Engine::Common::Direction::Up;
+          if (dirStr == "down") d = Engine::Common::Direction::Down;
+          if (dirStr == "right") d = Engine::Common::Direction::Right;
+          float velocity = static_cast<float>((JsonValue::fromString(x("properties")("velocity").getString())).getReal());
+          entities.back().addComponent<Engine::Platform>(
+            velocity, 
+            Engine::Common::Point{ static_cast<int16_t>(arr[0].getInteger()), static_cast<int16_t>(arr[1].getInteger()) },
+            Engine::Common::Point{ static_cast<int16_t>(arr[2].getInteger()), static_cast<int16_t>(arr[3].getInteger()) },
+            pos,
+            d
+            );
+          platformDeps[entities.back()] = x("properties")("depends").getString();
+
+
           //entities.push_back(Game::getGameInstance()->world->createEntity());
           //platforms.emplace_back(entities.back());
           //entities.back().addComponent<Engine::Movable>(pos);
@@ -119,6 +141,14 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
     auto jv = JsonValue::fromString(door.second);
     for (auto& dependency : jv.getArray()) {
       doorComp.dependencies.insert(triggers[dependency.getInteger()]);
+    }
+  }
+
+  for (auto& plaform : platformDeps) {
+    auto& plaformComp = plaform.first.getComponent<Engine::Platform>();
+    auto jv = JsonValue::fromString(plaform.second);
+    for (auto& dependency : jv.getArray()) {
+      plaformComp.dependencies.insert(triggers[dependency.getInteger()]);
     }
   }
 }

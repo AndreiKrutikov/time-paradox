@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Acts.cpp" />
+    <ClCompile Include="Common.cpp" />
     <ClCompile Include="Components\Interactible.cpp" />
     <ClCompile Include="EntityComponentSystem\ComponentFilter.cpp" />
     <ClCompile Include="EntityComponentSystem\detail\EntityComponentStorage.cpp" />

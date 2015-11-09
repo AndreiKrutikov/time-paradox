@@ -2,7 +2,7 @@
 #include <EntityComponentSystem/World.hpp>
 #include "EventDispatcher.h"
 #include "../Components/Movable.h"
-#include "../Components/Motorial.h"
+#include "../Components/Platform.h"
 #include "../TimeManager.h"
 #include "../Game.h"
 #include "../Player.h"
@@ -10,7 +10,7 @@
 
 const float Engine::Graphics::TILESIZE = 32;
 
-Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<Drawable>().requiresOneOf<GamePosition, Movable/*, Motorial*/>()), window(window) {
+Engine::Graphics::Graphics(sf::RenderWindow & window) : System(EntityComponentSystem::ComponentFilter().requires<Drawable>().requiresOneOf<GamePosition, Movable, Platform>()), window(window) {
 }
 
 void Engine::Graphics::initialize() {
@@ -47,10 +47,10 @@ void Engine::Graphics::update() {
       point = pos.position;
     }
 
-    //if (e.hasComponent <Motorial> ()) {
-    //  auto& pos = e.getComponent<Motorial>();
-    //  point = pos.currentPosition;
-    //}
+    if (e.hasComponent<Platform>()) {
+      auto& pos = e.getComponent<Platform>();
+      point = pos.currentPosition;
+    }
 
     auto& drawable = e.getComponent<Drawable>();
     drawable.sprite.setPosition(sf::Vector2f{ point.x * TILESIZE, point.y * TILESIZE });

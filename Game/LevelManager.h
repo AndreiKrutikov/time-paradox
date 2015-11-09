@@ -31,15 +31,10 @@ struct LevelManager {
 
   Engine::Common::Point start, finish;
 private:
-  //std::list<Entities::Door> doors;
-  //std::list<Entities::Switch> buttons;
-//  std::list<Entities::MovingPlatform> platforms;
-  std::vector<EntityComponentSystem::Entity> entities;
-  
+  std::vector<EntityComponentSystem::Entity> entities; 
 
   void loadTileSet(Engine::Common::JsonValue& tilesetArray, const std::string& path);
   void loadTileLayer(Engine::Common::JsonValue& layer, uint16_t width, EntityComponentSystem::World& w);
-
 };
 
 }

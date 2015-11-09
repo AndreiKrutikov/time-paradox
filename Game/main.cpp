@@ -9,6 +9,7 @@
 #include "Systems\RegionSystem.h"
 #include "Systems\ButtonSystem.h"
 #include "Systems\DoorSystem.h"
+#include "Systems\PlatformSystem.h"
 #include "TimeManager.h"
 #include "Player.h"
 #include <iostream>
@@ -39,7 +40,7 @@ int main() {
   w.addSystem(regSys);
 
   game.resourceManager->loadFont("cam_font", "unispace rg.ttf");
-  levelManager.loadLevel("maps\\denis\\", "4_.json", w);
+  levelManager.loadLevel("maps\\denis\\", "5.json", w);
   
   game.accessabilityMap = &levelManager.accessMap;
   levelManager.initLevel();
@@ -49,12 +50,14 @@ int main() {
   EventDispatcher ed(window);
   Engine::DoorSystem doorSystem;
   Engine::ButtonSystem buttonSystem;
+  Engine::PlatformSystem platformSystem;
   
 
   w.addSystem(graphicsSystem);
   w.addSystem(ed);
   w.addSystem(doorSystem);
   w.addSystem(buttonSystem);
+  w.addSystem(platformSystem);
 
   Game::Player p(w.createEntity());
   game.player = &p;
@@ -72,6 +75,7 @@ int main() {
     regSys.update();
     buttonSystem.update();
     doorSystem.update();
+    platformSystem.update();
     ed.update();
     graphicsSystem.update();
   }

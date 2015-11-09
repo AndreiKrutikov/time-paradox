@@ -105,6 +105,9 @@
     <ClCompile Include="Systems\PlatformSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InGameCamera.h">
@@ -187,9 +190,6 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Triggerable.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Utils\JsonValue.h">
       <Filter>Header Files</Filter>
