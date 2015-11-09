@@ -19,14 +19,15 @@ Use space to stop time, then press "-" to travel into the past, or "+" to visit 
 ### How do I build this game ###
 
 You need Microsoft Visual Studio 15 for building solution.
-1)Download pre-built binaries of SFML from http://www.sfml-dev.org/download.php
-2)Install them
-3)Fix path in Game/SFML_Release.props and Game/SFML_Debug.props
-4)Open Game.sln in MSVS and build it.
+
+- Download pre-built binaries of SFML from http://www.sfml-dev.org/download.php
+- Install them
+- Fix path in Game/SFML_Release.props and Game/SFML_Debug.props
+- Open Game.sln in MSVS and build it.
 
 ### Known Bugs ###
 
-1)Platform still not working properly
-2)Main menu needs to be reworked
-3)Spurious crashes
-4)Animations
+- Platform still not working properly
+- Main menu needs to be reworked
+- Spurious crashes
+- Animations
