@@ -22,17 +22,17 @@ int main() {
   Game::Game game;
   gameInstance = &game;
   sf::Font font;
-  bool f = font.loadFromFile("unispace rg.ttf");
+  bool f = font.loadFromFile("resources/unispace rg.ttf");
   sf::Texture t;
   sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
   sf::RenderWindow window(sf::VideoMode(desktop.width, desktop.height, desktop.bitsPerPixel), "Wait, OH SHI~~~");
   sf::Image im;
-  bool s = im.loadFromFile("maps//robot.png");
+  bool s = im.loadFromFile("resources/robot.png");
   s = t.loadFromImage(im);
   sf::Texture t2;
-  t2.loadFromFile("maps//robot.png");
+  t2.loadFromFile("resources/robot.png");
   std::vector<sf::Text> levels;
-  std::ifstream file("Levels.config");
+  std::ifstream file("resources/Levels.config");
   uint16_t margin = 10;
   std::string str;
   while (std::getline(file, str)) {
@@ -79,6 +79,9 @@ int main() {
             levels[levelidx].setStyle(sf::Text::Style::Bold);
             levels[levelidx].setColor(sf::Color::White);
             break;
+          case sf::Keyboard::Escape:
+            return 0;
+            break;
           default:
             break;
           }
@@ -108,8 +111,8 @@ int main() {
     RegionSystem regSys;
     w.addSystem(regSys);
 
-    game.resourceManager->loadFont("cam_font", "unispace rg.ttf");
-    levelManager.loadLevel("maps\\", curlevel, w);
+    game.resourceManager->loadFont("cam_font", "resources/unispace rg.ttf");
+    levelManager.loadLevel("resources/", curlevel, w);
 
     game.accessabilityMap = &levelManager.accessMap;
     levelManager.initLevel();

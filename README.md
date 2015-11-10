@@ -18,12 +18,28 @@ Use space to stop time, then press "-" to travel into the past, or "+" to visit 
 
 ### How do I build this game ###
 
-You need Microsoft Visual Studio 15 for building solution.
+You need Microsoft Visual Studio 15 OR gcc 4.8+ for building solution.
 
-- Download pre-built binaries of SFML from http://www.sfml-dev.org/download.php
-- Install them
-- Fix path in Game/SFML_Release.props and Game/SFML_Debug.props
-- Open Game.sln in MSVS and build it.
+1. Download pre-built binaries(Linux or Windows) of SFML from http://www.sfml-dev.org/download.php
+2. Unpack them somewhere
+3.
+Linux:  
+mkdir build  
+cd build  
+cmake .. -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=dir_where_lies_unpacked_sfml_lib  
+make Game
+
+
+Windows:
+mkdir build  
+cd build  
+set path=C:\Program Files (x86)\CMake\bin  
+cmake -G "Visual Studio 14 Win64" .. -DSFML_ROOT=dir_where_lies_unpacked_sfml_lib   
+Then open TimeParadox.sln and build it in VisualStudio, do not forget change build type to Release
+
+4. Place „resource“ folder near binary file.
+5. For Windows you probably also need copy *.dll from SFML_ROOT/bin
+
 
 ### Known Bugs ###
 

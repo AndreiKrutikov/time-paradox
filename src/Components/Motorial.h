@@ -1,7 +1,7 @@
 #pragma once
 #include <chrono>
 #include <EntityComponentSystem/Component.hpp>
-#include "Common.h"
+#include "Game/Common.h"
 
 using EntityComponentSystem::Component;
 

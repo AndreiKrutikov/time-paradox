@@ -2,7 +2,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <EntityComponentSystem/World.hpp>
-#include "AccessabilityMap.h"
+#include "Game/AccessabilityMap.h"
 #include "Components/GamePosition.h"
 #include "Components/Triggerable.h"
 

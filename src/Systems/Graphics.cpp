@@ -1,11 +1,11 @@
 #include "Graphics.h"
 #include <EntityComponentSystem/World.hpp>
 #include "EventDispatcher.h"
-#include "../Components/Movable.h"
-#include "../Game.h"
-#include "../LevelManager.h"
-#include "../Player.h"
-#include "../TimeManager.h"
+#include "Game/Game.h"
+#include "Components/Movable.h"
+#include "Game/LevelManager.h"
+#include "Game/Player.h"
+#include "Game/TimeManager.h"
 
 const float Engine::Graphics::TILESIZE = 32;
 

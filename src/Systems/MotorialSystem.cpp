@@ -1,7 +1,7 @@
 #include "MotorialSystem.h"
-#include "../EntityComponentSystem/World.hpp"
-#include "../Game.h"
-#include "../TimeManager.h"
+#include <EntityComponentSystem/World.hpp>
+#include "Game/Game.h"
+#include "Game/TimeManager.h"
 
 Engine::MotorialSystem::MotorialSystem() : System(EntityComponentSystem::ComponentFilter().requires <Movable, Motorial>()) {
 }
