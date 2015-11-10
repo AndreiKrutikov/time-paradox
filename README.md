@@ -21,16 +21,15 @@ Use space to stop time, then press "-" to travel into the past, or "+" to visit 
 You need Microsoft Visual Studio 15 OR gcc 4.8+ for building solution.
 
 1. Download pre-built binaries(Linux or Windows) of SFML from http://www.sfml-dev.org/download.php
-2. Unpack them somewhere
-3.
-Linux:  
+2. Unpack them somewhere  
+3. Linux:  
 mkdir build  
 cd build  
 cmake .. -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=dir_where_lies_unpacked_sfml_lib  
 make Game
 
 
-Windows:
+3'. Windows:  
 mkdir build  
 cd build  
 set path=C:\Program Files (x86)\CMake\bin  
