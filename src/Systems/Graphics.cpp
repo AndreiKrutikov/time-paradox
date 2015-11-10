@@ -24,11 +24,11 @@ void Engine::Graphics::initialize() {
   auto size = window.getSize();
   rt.create(size.x, size.y);
   ppSprite.setTexture(rt.getTexture());
-  ppShader.loadFromFile("glow.frag", sf::Shader::Fragment);
+  ppShader.loadFromFile("resources/glow.frag", sf::Shader::Fragment);
   ppShader.setParameter("texture", sf::Shader::CurrentTexture);
 
-  winImg.loadFromFile("win.png");
-  failImg.loadFromFile("fail.png");
+  winImg.loadFromFile("resources/win.png");
+  failImg.loadFromFile("resources/fail.png");
 
 }
 
