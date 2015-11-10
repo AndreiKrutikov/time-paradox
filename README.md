@@ -18,7 +18,7 @@ Use space to stop time, then press "-" to travel into the past, or "+" to visit 
 
 ### How do I build this game ###
 
-You need Microsoft Visual Studio 15 OR gcc 4.8+ for building solution.
+You need Microsoft Visual Studio 15 OR gcc 4.9 for building solution.
 
 1. Download pre-built binaries(Linux or Windows) of SFML from http://www.sfml-dev.org/download.php
 2. Unpack them somewhere  

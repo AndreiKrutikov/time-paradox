@@ -23,7 +23,7 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
   clear();
   std::ifstream t(path + levelfile);
   std::string jsonString((std::istreambuf_iterator<char>(t)), std::istreambuf_iterator<char>());
-  auto& jsonData = JsonValue::fromString(jsonString);
+  auto jsonData = JsonValue::fromString(jsonString);
 
   height = (uint16_t)(jsonData("layers").getArray()[0])("height").getInteger();
   width = (uint16_t)(jsonData("layers").getArray()[0])("width").getInteger();
@@ -58,7 +58,7 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
       for (auto& x : layer("objects").getArray()) {
         std::string s = x("type").getString();
         uint16_t idx = std::stoi((x("properties"))("arr_pos").getString());
-        Point pos = Point{ idx % width, idx / width };
+        Point pos = Point{ static_cast<int16_t>(idx % width), static_cast<int16_t>(idx / width)  };
         if (s == "enter") {
           start = pos;
         } else if (s == "exit") {
@@ -109,7 +109,7 @@ void LevelManager::loadLevel(const std::string path, const std::string& levelfil
 
   for (auto& x : switches) {
     uint16_t idx = std::stoi((x("properties"))("arr_pos").getString());
-    Point pos = Point{ idx % width, idx / width };
+    Point pos = Point{ static_cast<int16_t>(idx % width), static_cast<int16_t>(idx / width)  };
     buttons.emplace_back(entities[idx], pos, 0, 0);
     auto str = x("properties")("switches").getString();
     auto jv = JsonValue::fromString(str);
@@ -140,13 +140,13 @@ void LevelManager::loadTileLayer(JsonValue& layer, uint16_t width, EntityCompone
 
   //check if we can walk on this thile
   for (uint16_t i = 0; i < data.size(); i++) {
-    entities[i].addComponent<Engine::GamePosition>(Point{ i % width, i / width });
+    entities[i].addComponent<Engine::GamePosition>(Point{ static_cast<int16_t>(i % width), static_cast<int16_t>(i / width) });
     uint16_t tileTypeId = static_cast<uint16_t>(data[i].getInteger());
     entities[i].addComponent<Engine::Drawable>(ResourceManager.getTileTexture(tileTypeId), ResourceManager.getTileRectangle(tileTypeId));
     entities[i].activate();
 
     if (ResourceManager.isWallType(tileTypeId)) {
-      accessMap.setOccupied(Point{ i % width, i / width });
+      accessMap.setOccupied(Point{ static_cast<int16_t>(i % width), static_cast<int16_t>(i / width)  });
     }
   }
 }

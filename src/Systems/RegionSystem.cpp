@@ -1,4 +1,5 @@
 #include "RegionSystem.h"
+#include <climits>
 #include <vector>
 #include <EntityComponentSystem/World.hpp>
 #include "Components/PlayerControlable.h"
@@ -34,7 +35,7 @@ void Engine::RegionSystem::update(bool outtatime) {
   for (auto p : newMap) {
     auto foundInd = findInMap(p);
     if (foundInd == -1) {
-      auto& mov = getWorld().getEntity(p.first);
+      auto mov = getWorld().getEntity(p.first);
       auto& reg = getWorld().getEntity(p.second).getComponent<Region>();
       reg.callback->onObjectEntered(mov);
     } else {
@@ -43,8 +44,8 @@ void Engine::RegionSystem::update(bool outtatime) {
   }
 
   for (auto p : movableToRegion) {
-    if (p !=  std::make_pair(-1ULL, -1ULL)) {
-      auto& mov = getWorld().getEntity(p.first);
+    if (p !=  std::make_pair(std::numeric_limits<uint64_t>::max(), std::numeric_limits<uint64_t>::max())) {
+      auto mov = getWorld().getEntity(p.first);
       auto& reg = getWorld().getEntity(p.second).getComponent<Region>();
       reg.callback->onObjectLeave(mov);
     }
