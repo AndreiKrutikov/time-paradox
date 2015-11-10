@@ -27,15 +27,12 @@ mkdir build
 cd build  
 cmake .. -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=dir_where_lies_unpacked_sfml_lib  
 make Game
-
-
-3'. Windows:  
+3'. Windows:   
 mkdir build  
 cd build  
 set path=C:\Program Files (x86)\CMake\bin  
 cmake -G "Visual Studio 14 Win64" .. -DSFML_ROOT=dir_where_lies_unpacked_sfml_lib   
 Then open TimeParadox.sln and build it in VisualStudio, do not forget change build type to Release
-
 4. Place „resource“ folder near binary file.
 5. For Windows you probably also need copy *.dll from SFML_ROOT/bin
 
