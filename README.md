@@ -4,9 +4,9 @@ Time Paradox - game where you should NOT face your previous self.
 
 ### Storyline ###
 
-Imagine, that you are a tiny robot trapped in an old facility, which is filled(for some reason) with unsolvable puzzles and unreasonable constrinctions. You have no other choice but to spend eternity in this building. 
+Imagine, that you are a tiny robot trapped in an old facility, which is filled(for some reason) with unsolvable puzzles and unreasonable constrictions. You have no other choice but to spend eternity in this building. 
 
-However, one day you faound your key to freedom: mistirious machine, that allows you to travel back and forwards in time. Now you at least stand a chance so reach your dream and leave this place.
+However, one day you found your key to freedom: mysterious machine, that allows you to travel back and forwards in time. Now you at least stand a chance to reach your dream and leave this place.
 
 DISCLAIMER: Changing observable past might cause The End of the World
 
